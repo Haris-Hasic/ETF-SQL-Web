@@ -25,10 +25,10 @@ class UserHistoriesController < ApplicationController
   # POST /user_histories.json
   def create
     @user_history = UserHistory.new(user_history_params)
-
+    @user_history.scriptcontent = params[:scriptcontent]
     respond_to do |format|
       if @user_history.save
-        format.html { redirect_to @user_history, notice: 'User history was successfully created.' }
+        format.html { redirect_to '/console', queryresult: 'VRATIO!' }
         format.json { render :show, status: :created, location: @user_history }
       else
         format.html { render :new }
