@@ -1,0 +1,6 @@
+bs:
+    hello: "Hello world"
+    Home: "Početna stranica"
+    Connections: "Konekcije"
+    signUp: "Prijavi se"
+    Login: "Login"
