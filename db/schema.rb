@@ -51,15 +51,12 @@ ActiveRecord::Schema.define(version: 20151103224350) do
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "password_digest"
-    t.integer  "usertype"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.boolean  "email_confirmed", default: false
     t.string   "confirm_token"
     t.string   "email"
-  end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
+  end
 
 end
