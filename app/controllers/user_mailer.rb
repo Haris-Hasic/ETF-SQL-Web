@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-	default :from => "dazinovic1@etf.unsa.ba"
+	default :from => "etfsql@gmail.com"
 	
 	def registration_confirmation(user)
 		@user = user
