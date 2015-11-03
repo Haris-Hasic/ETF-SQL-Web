@@ -19,6 +19,8 @@ gem 'bcrypt-ruby'
 gem 'angularjs-rails'
 gem 'bootstrap-sass'
 
+#Prevod
+gem 'rails-i18n'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
