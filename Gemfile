@@ -18,7 +18,7 @@ gem 'bcrypt-ruby'
 #AngularJS i Bootstrap
 gem 'angularjs-rails'
 gem 'bootstrap-sass'
-
+gem 'bootstrap_form'
 #Prevod
 gem 'rails-i18n'
 # Use jquery as the JavaScript library

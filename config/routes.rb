@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   root 'home#index'
- 
+  get '/home' => 'home#index'
+  get '/' => 'home#index'
   # Example of regular route:
   get '/console' => 'console#index'
   #post '/console/submit' => 'console#create'
