@@ -62,7 +62,7 @@
     <form accept-charset="UTF-8" action="/user_histories" method="post">
       <textarea class="form-control" rows="20" id="query" name="scriptcontent"></textarea>
       <input name="authenticity_token" type="hidden" 
-      value="x37DrAAwyIIb7s+w2+AdoCR8cAJIpQhIetKRrPgG5VA=">
+      value="<%=session[:_csrf_token]%>">
       <br>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
