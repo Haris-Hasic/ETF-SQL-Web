@@ -28,9 +28,14 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/users/new"><span class="glyphicon glyphicon-user"></span><%= t('signUp') %></a></li>
-        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span><%= t('Login') %></a></li>
-      </ul>
+        <% if session[:user_id] %>
+        
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span>Dobrodošao, <%= session[:current_username] %> </a></li> <!-- treba username -->
+          <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+        <% else %>
+          <li><a href="/users/new"><span class="glyphicon glyphicon-user"></span>Prijavi se</a></li>
+          <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+        <% end %>
     </div>
   </div>
 </nav>
