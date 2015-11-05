@@ -35,7 +35,7 @@
       
         <% if session[:user_id] %>
         
-          <li><a href="#"><span class="glyphicon glyphicon-user"></span>Dobrodošao, <% session[:current_user] %> </a></li> <!-- treba username -->
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span>Dobrodošao, <%= session[:current_username] %> </a></li> <!-- treba username -->
           <li><a href="#"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
         <% else %>
           <li><a href="#"><span class="glyphicon glyphicon-user"></span>Prijavi se</a></li>
@@ -48,6 +48,7 @@
   </div>
 </nav>
   
+  <div class="col-md-2 col-md-2 col-md-offset-3"><%= image_tag("ETF_logo1.png")%></div>
   <!--Defaultne stvari
 <div class="defaultHidden">
   <div class="jumbotron">
