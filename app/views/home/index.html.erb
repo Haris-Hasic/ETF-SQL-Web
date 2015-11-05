@@ -13,10 +13,13 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
+      <a class="navbar-brand" href="#">ETFSQL</a>
     </div>
     <div>
       <ul class="nav navbar-nav">
+        
+        
+        <!-- Defaultne stvari 
         <li class="active"><a href="#">Home</a></li>
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -26,17 +29,27 @@
           </ul>
         </li>
         <li><a href="#">Page 2</a></li>
-        <li><a href="#">Page 3</a></li>
+        <li><a href="#">Page 3</a></li>-->
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      
+        <% if session[:user_id] %>
+        
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span>Dobrodošao, <% session[:current_user] %> </a></li> <!-- treba username -->
+          <li><a href="#"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+        <% else %>
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span>Prijavi se</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+        <% end %>
+        
+        <li></li>
       </ul>
     </div>
   </div>
 </nav>
   
-<div class="container">
+  <!--Defaultne stvari
+<div class="defaultHidden">
   <div class="jumbotron">
     <h1>My first Bootstrap website!</h1>      
     <p>This page will grow as we add more and more components from Bootstrap...</p>      
@@ -71,6 +84,7 @@
     <div class="clearfix visible-lg"></div>
   </div>
 </div>
+-->
 
 </body>
 </html>
