@@ -18,9 +18,9 @@
       <input name="authenticity_token" type="hidden" 
       value="<%=session[:_csrf_token]%>">
       <br>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary"><%= t('submit') %></button>
     </form>
-    <h1>Query Result</h1>
+    <h1><%= t('results') %></h1>
     <p name="queryresult"><%= @queryresult %></p>
     <div class="clearfix visible-lg"></div>
   </div>
