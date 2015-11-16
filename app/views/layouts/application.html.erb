@@ -75,8 +75,8 @@
       
       
       
-      <li><a href="/?locale=en" >English</a></li>
-      <li><a href="/?locale=bs" >Bosanski</a></li>
+      <li><a href="<%= if request.original_url.include? "?" then (request.original_url.sub!("locale=","fl=") + "&locale=en") else  (request.original_url + "?locale=en") end %>"> English</a></li>
+      <li><a href="<%= if request.original_url.include? "?" then (request.original_url.sub!("locale=","fl=") + "&locale=bs") else  (request.original_url + "?locale=bs") end %>">Bosanski</a></li>
         <% if session[:user_id] %>
           <% if url_for(:only_path => true) != '/console' %>
           <li><a href="/console"></span>Konzola</a></li>
