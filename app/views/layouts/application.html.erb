@@ -80,11 +80,11 @@
           <% if url_for(:only_path => true) != '/console' %>
           <li><a href="/console"></span>Konzola</a></li>
           <% end %>
-          <li><a href="#"><span class="glyphicon glyphicon-user"></span>Dobrodošao, <%= session[:current_username] %> </a></li> <!-- treba username -->
-          <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span><%=t 'greet_username', user:"Korisnik" %> </a></li> <!-- treba username -->
+          <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span><%= t('Logout') %></a></li>
         <% else %>
-          <li><a href="/users/new"><span class="glyphicon glyphicon-user"></span>Registracija</a></li>
-          <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+          <li><a href="/users/new"><span class="glyphicon glyphicon-user"></span><%= t('Register') %></a></li>
+          <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span><%= t('Login') %></a></li>
         <% end %>
         
         <li></li>
