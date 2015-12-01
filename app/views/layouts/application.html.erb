@@ -2,10 +2,11 @@
 <html>
 <head>
   <title>Etfsql</title>
+  <%= javascript_include_tag 'application' %>
   <%= stylesheet_link_tag    'application' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body ng-app="ETF-SQL-Web">
 
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -48,12 +49,7 @@
           </div>
         
         <% elsif false %>
-        <% end %>
-        
-        
-        
-        
-        
+        <% end %>  
         
         <!-- Defaultne stvari 
         <li class="active"><a href="#">Home</a></li>
@@ -68,12 +64,6 @@
         <li><a href="#">Page 3</a></li>-->
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      
-      
-      
-      
-      
-      
       
       <li><a href="<%= if request.original_url.include? "?" then (request.original_url.sub!("locale=","fl=") + "&locale=en") else  (request.original_url + "?locale=en") end %>"> English</a></li>
       <li><a href="<%= if request.original_url.include? "?" then (request.original_url.sub!("locale=","fl=") + "&locale=bs") else  (request.original_url + "?locale=bs") end %>">Bosanski</a></li>
