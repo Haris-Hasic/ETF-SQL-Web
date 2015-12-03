@@ -12,6 +12,7 @@ app.config(function($routeProvider) {
 			controller: 'ConsoleController',
 			templateUrl: '../templates/console/console.html.erb'
 		})
+		
 		// Default routing
 		.otherwise({
 			controller: 'HomeController',
