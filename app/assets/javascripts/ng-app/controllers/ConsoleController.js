@@ -23,4 +23,11 @@ app.controller('ConsoleController', ['$scope', '$location','$http', function($sc
                 });
            });
         };
+        $scope.textevaluate = function() {
+        	$scope.textarray = $scope.scriptcontent.split(" ");
+        	if($scope.textarray[$scope.textarray.length-1].toUpperCase() == "SELECT" || $scope.textarray[$scope.textarray.length-1].toUpperCase() == "FROM" || $scope.textarray[$scope.textarray.length-1].toUpperCase() == "WHERE" || $scope.textarray[$scope.textarray.length-1].toUpperCase() == "GROUP" || $scope.textarray[$scope.textarray.length-1].toUpperCase() == "BY" || $scope.textarray[$scope.textarray.length-1].toUpperCase() == "ORDER" || $scope.textarray[$scope.textarray.length-1].toUpperCase() == "TRIGGER") {
+        		$scope.textarray[$scope.textarray.length-1] = $scope.textarray[$scope.textarray.length-1].toUpperCase();
+        		$scope.scriptcontent = $scope.textarray.join(" ");
+        	}
+        };
 }]);

@@ -14,7 +14,7 @@
   <h1>Query</h1>
   <div class="form-group">
     <form class="form-horizontal" data-ng-submit="create()" novalidate>
-      <textarea class="form-control" rows="20" id="query" data-ng-model="scriptcontent"></textarea>
+      <textarea class="form-control" style="font-family:'Courier New'" rows="20" id="query" data-ng-model="scriptcontent" ng-change="textevaluate()" ng-trim="false"></textarea>
       <button type="submit" class="btn btn-primary" data-ng-click="SubmitQuery">Submit</button>
     </form>
     <h1>Results</h1>
