@@ -1,4 +1,5 @@
 app.controller('HomeController', ['$scope', function($scope) { 
-	  
-	  $scope.foo = "bar";
+	  $scope.init = function(){
+	      $scope.ETF_logo1 = "templates/images/ETF_logo1.png";
+	  };
 }]);
