@@ -9,22 +9,31 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container" data-ng-controller="ConsoleController">
+  <section data-ng-controller="ConsoleController" data-ng-init="init()">
+<div class="container">
   <h1>Query</h1>
   <div class="form-group">
-    <form accept-charset="UTF-8" action="/user_histories" method="post">
-      <textarea class="form-control" rows="20" id="query" name="scriptcontent"></textarea>
-      <input name="authenticity_token" type="hidden" 
-      value="<%=session[:_csrf_token]%>">
-      <br>
+    <form class="form-horizontal" data-ng-submit="create()" novalidate>
+      <textarea class="form-control" rows="20" id="query" data-ng-model="scriptcontent"></textarea>
       <button type="submit" class="btn btn-primary" data-ng-click="SubmitQuery">Submit</button>
     </form>
     <h1>Results</h1>
-    <p data-ng-model="queryresult"></p>
+    <table class="table table-striped">
+        <thead>
+          <th>Index</th>
+          <th data-ng-repeat="i in column_names">{{i}}</th>
+        </thead>  
+            <tbody>
+        <tr data-ng-repeat="e in rows_result">
+            <td>{{$index+1}}</td>
+            <td data-ng-repeat="j in e track by $index">{{j}}</td>
+        </tr>
+    </tbody>
+</table>
     <div class="clearfix visible-lg"></div>
   </div>
 </div>
-
+</section>
 </body>
 </html>
 

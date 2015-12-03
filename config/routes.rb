@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   root 'application#index'
-  get '*path' => 'application#index'
+  #get '*path' => 'application#index'
   
   resources :user_histories
   resources :preferences
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get '/home' => 'home#index'
   get '/' => 'home#index'
   # Example of regular route:
-  get '/console' => 'console#index'
+  post '/consoles' => 'console#index'
   #post '/console/submit' => 'console#create'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
