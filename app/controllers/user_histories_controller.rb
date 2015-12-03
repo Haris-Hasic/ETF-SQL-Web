@@ -26,9 +26,14 @@ class UserHistoriesController < ApplicationController
   def create
     @user_history = UserHistory.new(user_history_params)
     @user_history.scriptcontent = params[:scriptcontent]
+    rows = []
+    @query = OCI8.new('hh16098', 'Ctilv7Ef', '//80.65.65.66:1521/ETFLAB.DB.LAB.ETF.UNSA.BA').exec(@user_history.scriptcontent) do |r|
+      rows.push(r)
+      end
+    puts rows
     respond_to do |format|
       if @user_history.save
-        format.html { redirect_to '/console', queryresult: 'VRATIO!' }
+        format.html { redirect_to '/#/console', queryresult: rows }
         format.json { render :show, status: :created, location: @user_history }
       else
         format.html { render :new }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Console</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container" data-ng-controller="ConsoleController">
+  <h1>Query</h1>
+  <div class="form-group">
+    <form accept-charset="UTF-8" action="/user_histories" method="post">
+      <textarea class="form-control" rows="20" id="query" name="scriptcontent"></textarea>
+      <input name="authenticity_token" type="hidden" 
+      value="<%=session[:_csrf_token]%>">
+      <br>
+      <button type="submit" class="btn btn-primary" data-ng-click="SubmitQuery">Submit</button>
+    </form>
+    <h1>Results</h1>
+    <p data-ng-model="queryresult"></p>
+    <div class="clearfix visible-lg"></div>
+  </div>
+</div>
+
+</body>
+</html>
+

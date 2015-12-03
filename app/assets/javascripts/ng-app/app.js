@@ -8,7 +8,10 @@ app.config(function($routeProvider) {
 			controller: 'SignupController',
 			templateUrl: '../templates/signup/signup.html'
 		})
-		
+		.when('/console', {
+			controller: 'ConsoleController',
+			templateUrl: '../templates/console/console.html.erb'
+		})
 		// Default routing
 		.otherwise({
 			controller: 'HomeController',
