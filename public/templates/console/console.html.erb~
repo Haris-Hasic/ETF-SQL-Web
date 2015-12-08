@@ -13,23 +13,26 @@
 <div class="container">
   <h1>Query</h1>
   <div class="form-group">
-    <form class="form-horizontal" data-ng-submit="create()" novalidate>
-      <textarea class="form-control" style="font-family:'Courier New'" rows="20" id="query" data-ng-model="scriptcontent" ng-change="textevaluate()" ng-trim="false"></textarea>
-      <button type="submit" class="btn btn-primary" data-ng-click="SubmitQuery">Submit</button>
-    </form>
+
+	<textarea class="form-control" style="font-family:'Courier New'" rows="20" id="query" data-ng-model="scriptContent" ng-change="textEvaluate()" ng-trim="false"></textarea>
+	<button type="submit" class="btn btn-primary" data-ng-click="create()">Submit</button>
+
     <h1>Results</h1>
-    <table class="table table-striped table-bordered table-condensed">
+    <table class="table table-striped">
         <thead>
-          <th>Index</th>
-          <th data-ng-repeat="i in column_names">{{i}}</th>
+            <th>Index</th>
+            <th data-ng-repeat="i in column_names">{{i}}</th>
         </thead>  
-            <tbody>
-        <tr data-ng-repeat="e in rows_result">
-            <td>{{$index+1}}</td>
-            <td data-ng-repeat="j in e track by $index">{{j}}</td>
-        </tr>
-    </tbody>
-</table>
+        <tbody>
+			<tr data-ng-repeat="e in rows_result">
+				<td>{{$index+1}}</td>
+				<td data-ng-repeat="j in e track by $index">{{j}}</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	{{queryresult}}
+
     <div class="clearfix visible-lg"></div>
   </div>
 </div>
