@@ -4,7 +4,7 @@
 
 .carousel .item {
     width: 100%; /*slider width*/
-    max-height: 92.2vh; /*slider height*/
+    max-height: 92.1vh; /*slider height*/
     margin: 0;
 }
 .carousel .item img {
