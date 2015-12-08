@@ -83,20 +83,20 @@
               </a>
             </li> <!-- treba username -->
             <li>
-              <a href="/logout">
+              <a href="/#/logout">
                 <span class="glyphicon glyphicon-log-out"></span>
                 <%= t('Logout') %>
               </a>
             </li>
             <% else %>
             <li>
-              <a href="/users/new">
+              <a href="/#/users/new">
                 <span class="glyphicon glyphicon-user"></span>
                 <%= t('Register') %>
               </a>
             </li>
             <li>
-              <a href="/login">
+              <a href="/#/session">
                 <span class="glyphicon glyphicon-log-in"></span>
                 <%= t('Login') %>
               </a>
@@ -108,7 +108,9 @@
       </div>
     </nav>
 
-    <%= yield %>
+    <div ng-view="">
+	
+    </div>
     
   </body>
 </html>

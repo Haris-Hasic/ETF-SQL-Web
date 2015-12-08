@@ -6,11 +6,15 @@ app.config(function($routeProvider) {
 		// Signup routing
 		.when('/signup', {
 			controller: 'SignupController',
-			templateUrl: '../templates/signup/signup.html'
+			templateUrl: '../templates/user/signup.html'
 		})
 		.when('/console', {
 			controller: 'ConsoleController',
 			templateUrl: '../templates/console/console.html.erb'
+		})
+		.when('/session', {
+			controller: 'SessionContoller',
+			templateUrl: '../templates/user/login.html'
 		})
 		
 		// Default routing
