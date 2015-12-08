@@ -9,7 +9,7 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <section data-ng-controller="ConsoleController" data-ng-init="init()">
+<section data-ng-controller="ConsoleController" data-ng-init="init()">
 <div class="container">
   <h1>Query</h1>
   <div class="form-group">
@@ -17,8 +17,9 @@
 	<textarea class="form-control" style="font-family:'Courier New'" rows="20" id="query" data-ng-model="scriptContent" ng-change="textEvaluate()" ng-trim="false"></textarea>
 	<button type="submit" class="btn btn-primary" data-ng-click="create()">Submit</button>
 
-    <h1>Results</h1>
-    <table class="table table-striped">
+	<h1>Results</h1>
+	
+    <table class="table table-striped" ng-if="queryResult == 'Success'">
         <thead>
             <th>Index</th>
             <th data-ng-repeat="i in column_names">{{i}}</th>
@@ -31,7 +32,9 @@
 		</tbody>
 	</table>
 	
-	{{queryresult}}
+	<div ng-if="queryResult == 'Error'">
+		{{ error }} at line	{{ line }}, column {{ column }}
+	</div>
 
     <div class="clearfix visible-lg"></div>
   </div>

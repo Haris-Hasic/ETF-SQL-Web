@@ -5,7 +5,7 @@ app.controller('ConsoleController', ['$scope', '$location','$http', function($sc
 					 "UPDATE", "SET", "DELETE", "TRIGGER", "VIEW", "SEQUENCE" ];
 	
 	$scope.init = function() {
-		$scope.queryresult = "Your results will be shown here!";
+		$scope.queryResult = "Your results will be shown here!";
 	};
 	
 	$scope.create = function () {
@@ -21,30 +21,76 @@ app.controller('ConsoleController', ['$scope', '$location','$http', function($sc
 	};
 	
 	var querySuccessCallback = function(response) {
-		$scope.queryresult = response.data.columns;
-		angular.forEach($scope.queryresult, function (value) {
-			$scope.column_names.push(value);
-		});
-		$scope.queryresult = response.data.rows;
-		angular.forEach($scope.queryresult, function (value) {
-			$scope.rows_result.push(value);
-		});
+		if (response.data.columns) {
+			angular.forEach(response.data.columns, function (value) {
+				$scope.column_names.push(value);
+			});
+			angular.forEach(response.data.rows, function (value) {
+				$scope.rows_result.push(value);
+			});
+			$scope.queryResult = "Success";
+		}
+		else {
+			$scope.error = response.data.error;
+			$scope.parse_error_offset = response.data.parse_error_offset;
+			setErrorLineAndColumn($scope.scriptContent, $scope.parse_error_offset)
+			setCaretPosition("query", $scope.parse_error_offset);
+			$scope.queryResult = "Error";
+		}
+	}
+	
+	var setErrorLineAndColumn = function(text, position) {
+		if (!text || text === "") {
+			$scope.line = 1;
+			$scope.column = 1;
+			return;
+		}
 		
-		$scope.queryresult = "";
+		var textArray = text.split(/\n/);		
+		var line = 0;
+		var characters = 0;
+		
+		while (line < textArray.length && characters <= position) {
+			characters += textArray[line].length + 1;
+			line++;
+		}
+		
+		$scope.line = line;
+		$scope.column = textArray[line - 1].length + position - characters + 2;		
 	}
 	
 	var queryErrorCallback = function(response) {
-		$scope.queryresult = "Query Failed";
+		$scope.queryResult = "Query Failed";
 	}
 	
 	$scope.textEvaluate = function() {
-		$scope.textarray = $scope.scriptContent.split(" ");
+		var textarray = $scope.scriptContent.split(/(\s+)/);
 		
 		for (var i = 0; i < keywords.length; i++) {
-			if (keywords[i] == $scope.textarray[$scope.textarray.length - 1].toUpperCase()) {
-				$scope.textarray[$scope.textarray.length-1] = $scope.textarray[$scope.textarray.length-1].toUpperCase();
-				$scope.scriptContent = $scope.textarray.join(" ");
+			if (keywords[i] == textarray[textarray.length - 1].toUpperCase()) {
+				textarray[textarray.length-1] = textarray[textarray.length-1].toUpperCase();
+				$scope.scriptContent = textarray.join("");
 			}
 		}
 	};
 }]);
+
+function setCaretPosition(elemId, caretPos) {
+    var elem = document.getElementById(elemId);
+
+    if(elem != null) {
+        if(elem.createTextRange) {
+            var range = elem.createTextRange();
+            range.move('character', caretPos);
+            range.select();
+        }
+        else {
+            if(elem.selectionStart) {
+                elem.focus();
+                elem.setSelectionRange(caretPos, caretPos);
+            }
+            else
+                elem.focus();
+        }
+    }
+}
