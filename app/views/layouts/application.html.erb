@@ -6,13 +6,13 @@
     <%= stylesheet_link_tag    'application' %>
     <%= csrf_meta_tags %>
   </head>
-  <body ng-app="ETF-SQL-Web">
+  <body ng-app="ETF-SQL-Web" >
 
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         
         <div class="navbar-header">
-          <a class="navbar-brand" href="/">ETFSQL</a>
+          <a class="navbar-brand" href="/#/">ETFSQL</a>
         </div>
         
         <div>
@@ -90,13 +90,13 @@
             </li>
             <% else %>
             <li>
-              <a href="/#/users/new">
+              <a href="/#/signup">
                 <span class="glyphicon glyphicon-user"></span>
                 <%= t('Register') %>
               </a>
             </li>
             <li>
-              <a href="/#/session">
+              <a href="/#/login">
                 <span class="glyphicon glyphicon-log-in"></span>
                 <%= t('Login') %>
               </a>
@@ -107,6 +107,7 @@
         </div>
       </div>
     </nav>
+
 
     <div ng-view="">
 	
