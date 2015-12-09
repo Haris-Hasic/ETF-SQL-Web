@@ -11,58 +11,92 @@
   <body>
   
     <section data-ng-controller="SignupController"">
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-4 well well-sm">
-            <legend><a href="http://www.jquery2dotnet.com"><i class="glyphicon glyphicon-globe"></i></a> Sign up!</legend>
-            <form action="#" method="post" class="form" role="form">
-            <div class="row">
-                <div class="col-xs-6 col-md-6">
-                    <input class="form-control" name="firstname" placeholder="First Name" type="text"
-                        required autofocus />
-                </div>
-                <div class="col-xs-6 col-md-6">
-                    <input class="form-control" name="lastname" placeholder="Last Name" type="text" required />
-                </div>
+  
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <div class="panel panel-default">
+            
+	      <div class="panel-heading">
+	        <strong> Sign up !</strong>
+	      </div>
+	  
+	      <div class="panel-body">
+	        <fieldset>
+	          <div class="row">
+		    <div class="center-block">
+		      <img class="profile-img" src="/assets/databaseIcon.png" alt="Database">
+		      </div>
+		    </div>
+		
+		    <div class="row">
+	              <div class="col-sm-12 col-md-10  col-md-offset-1 ">
+		        <div class="form-group">
+		          <div class="input-group">
+		            <span class="input-group-addon">
+		              <i class="glyphicon glyphicon-user"></i>
+			    </span>
+			 
+	                   <input class="form-control" name="username" placeholder="Username" type="text" ng-model="username"/><br/>
+		          </div>
+	  	        </div>
+		   
+		        <div class="form-group">
+		          <div class="input-group">
+		            <span class="input-group-addon">
+			      <i class="glyphicon glyphicon-envelope"></i>
+		            </span>
+		       
+                            <input class="form-control" name="email" placeholder="Email" type="email" ng-model="email"/><br/>
+		          </div>
+		        </div>
+		        
+		        		        <div class="form-group">
+		          <div class="input-group">
+		            <span class="input-group-addon">
+			      <i class="glyphicon glyphicon-lock"></i>
+		            </span>
+		       
+                            <input class="form-control" name="password" placeholder="Password" type="password" ng-model="password"/><br/>
+		          </div>
+		        </div>
+		        
+		        		        		        <div class="form-group">
+		          <div class="input-group">
+		            <span class="input-group-addon">
+			      <i class="glyphicon glyphicon-lock"></i>
+		            </span>
+		       
+                            <input class="form-control" name="password_confirmation" placeholder="Re-enter Password" type="password" ng-model="password_confirmation" />
+		          </div>
+		        </div>
+		   
+		        <div class="form-group">
+		          <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign up" ng-click="signUp()">
+		        </div>
+		      </div>
+	            </div>
+	          </fieldset>
+
+	      </div>
+	 
+	      <div class="panel-footer"> 
+	      	SQL Tool ETF Sarajevo.
+	      </div>
+	    
             </div>
-            <input class="form-control" name="youremail" placeholder="Your Email" type="email" />
-            <input class="form-control" name="reenteremail" placeholder="Re-enter Email" type="email" />
-            <input class="form-control" name="password" placeholder="New Password" type="password" />
-            <label for="">
-                Birth Date</label>
-            <div class="row">
-                <div class="col-xs-4 col-md-4">
-                    <select class="form-control">
-                        <option value="Month">Month</option>
-                    </select>
-                </div>
-                <div class="col-xs-4 col-md-4">
-                    <select class="form-control">
-                        <option value="Day">Day</option>
-                    </select>
-                </div>
-                <div class="col-xs-4 col-md-4">
-                    <select class="form-control">
-                        <option value="Year">Year</option>
-                    </select>
-                </div>
-            </div>
-            <label class="radio-inline">
-                <input type="radio" name="sex" id="inlineCheckbox1" value="male" />
-                Male
-            </label>
-            <label class="radio-inline">
-                <input type="radio" name="sex" id="inlineCheckbox2" value="female" />
-                Female
-            </label>
-            <br />
-            <br />
-            <button class="btn btn-lg btn-primary btn-block" type="submit">
-                Sign up</button>
-            </form>
+          </div>
         </div>
-    </div>
-</div>
+      </div>
+	  
+	<div ng-if="success == 'Success'">
+		Uspješna registracija.
+	</div>
+	<div ng-if="success == 'Error'">
+		Registracija nije uspjela.
+	</div>
+	
+	  
     </section>
   </body>
 </html>

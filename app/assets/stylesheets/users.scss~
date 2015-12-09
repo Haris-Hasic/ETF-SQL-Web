@@ -4,11 +4,17 @@
 
 .panel-heading {
     padding: 5px 15px;
+    text-align: center;
 }
 
 .panel-footer {
 	padding: 1px 15px;
 	color: #A0A0A0;
+	text-align: center;
+}
+
+.panel-footer a:hover {
+	background-color: #F8F8F8;
 }
 
 .profile-img {
@@ -22,6 +28,10 @@
 }
 
 .container {
-	margin: 40px;
-	align: center;
+	margin-top: 40px;
+	align: center !important;
+}
+
+.retrievePass {
+	padding-bottom: 5;
 }

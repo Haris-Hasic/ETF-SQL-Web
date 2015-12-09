@@ -16,8 +16,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'angular_rails_csrf'
 gem 'bcrypt'
 gem 'bcrypt-ruby'
-gem 'ruby-oci8'
 gem 'activerecord-oracle_enhanced-adapter'
+gem 'ruby-oci8'
 #AngularJS i Bootstrap
 gem 'angularjs-rails'
 gem 'angular-rails-templates'
@@ -55,4 +55,3 @@ group :development do
   gem 'spring'
   gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 end
-
