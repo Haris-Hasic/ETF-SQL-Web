@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 		  session[:current_username] = @user[:username]
 		  redirect_to '/'
 		else
-		  redirect_to '/login' #pogresan password
+		  #redirect_to '/login' #pogresan password
 		end
 	end
 

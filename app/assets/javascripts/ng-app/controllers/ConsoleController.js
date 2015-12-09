@@ -1,4 +1,4 @@
-app.controller('ConsoleController', ['$scope', '$location','$http', function($scope, $location,$http) {
+app.controller('ConsoleController', ['$scope', '$location','$http', function($scope, $location, $http) {
 	
 	var keywords = [ "SELECT", "FROM", "WHERE", "GROUP", "ORDER", "BY", "AS", 
 	                 "CREATE", "INSERT", "INTO", "VALUES",

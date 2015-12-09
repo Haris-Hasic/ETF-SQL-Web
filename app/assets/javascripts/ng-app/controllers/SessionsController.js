@@ -1,9 +1,24 @@
-app.controller('SessionsController', ['$scope', '$location', function($scope, $location) { 
+app.controller('SessionsController', ['$scope', '$location', '$http', function($scope, $location, $http) { 
 	  
-	  $scope.foo ="bar";
-	  $scope.login = function(){
-	  	
-	  }
+	$scope.login = function(){
+		var data = {
+			user: {
+				username: $scope.username,
+				password: $scope.password,
+			}
+		};
+
+		$http.post('/login', data).then(successCallback, errorCallback);
+	}
+	
+	var successCallback = function(response) {
+		$scope.success = "Success";
+	}
+	
+	var errorCallback = function(response) {
+		$scope.success = "Error";
+	}
+
 }]);
 
 /*
