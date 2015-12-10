@@ -27,7 +27,14 @@
         <button class="scriptButton btn btn-primary launch-modal">
           <i class="glyphicon glyphicon-flash"></i>&nbsp; Disconnect
         </button>
-
+        <!-- Dropdown User History -->
+        <div class="dropdown scriptButton">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" data-ng-click="getUserHistory()">User History
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li data-ng-repeat="uh in user_queries"><a href="" data-ng-click="insertOldQuery($index)">{{uh.scriptcontent}}</a></li>
+          </ul>
+        </div>
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -84,7 +91,7 @@
             </tbody>
           </table>
 	
-          <div ng-if="queryResult == 'Error'"> 
+          <div class="alert alert-danger" ng-if="queryResult == 'Error'"> 
             {{ error }} at line	{{ line }}, column {{ column }}
           </div>
       
