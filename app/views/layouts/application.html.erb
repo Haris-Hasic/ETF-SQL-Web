@@ -6,6 +6,7 @@
     <%= stylesheet_link_tag    'application' %>
     <%= csrf_meta_tags %>
   </head>
+  
   <body ng-app="ETF-SQL-Web" >
 
     <nav class="navbar navbar-inverse">
@@ -71,21 +72,19 @@
             <li><a href="#">Page 3</a></li>-->
           </ul>
          
-         
             <div data-ng-controller="SessionsController" data-ng-init="init()">
              <ul class="nav navbar-nav navbar-right">
                 <div ng-if="session">
-                  <li><a href="/#/console"></span>Konzola</a></li>
+                  <li><a href="/#/console">Konzola</a></li>
                   <li>
-                    <a href="#">
+                    <a href="#/dashboard">
                       <span class="glyphicon glyphicon-user"></span>
-                      <p data-ng-bind="session.current_user.username"></p>
-                    </a>
+                      Dobrodošao, {{session.current_user.username}}</a>
                   </li> <!-- treba username -->
                   <li>
                     <a href="/#/logout">
                       <span class="glyphicon glyphicon-log-out"></span>
-                      <%= t('Logout') %>
+                      Odjava
                     </a>
                   </li>
                 </div>
@@ -106,10 +105,6 @@
                     </li>
                     </div>
             
-            
-            
-            
-            <li></li>
           </ul>
           </div>
         </div>
