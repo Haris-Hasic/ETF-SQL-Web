@@ -1,18 +1,21 @@
-app.controller('SessionsController', ['$scope', '$location', '$http', function($scope, $location, $http) { 
+app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http', function($rootScope,$scope, $location, $http) { 
 	  
 	$scope.login = function(){
 		var data = {
 			user: {
-				username: $scope.username,
+				email: $scope.username,
 				password: $scope.password,
 			}
 		};
 
-		$http.post('/login', data).then(successCallback, errorCallback);
+		$http.post('/login.json', data).then(successCallback, errorCallback);
 	}
 	
 	var successCallback = function(response) {
 		$scope.success = "Success";
+		$rootScope.session = {};
+		$rootScope.session.current_user = response.data.user_id;
+		console.log($rootScope.session.current_user);
 	}
 	
 	var errorCallback = function(response) {

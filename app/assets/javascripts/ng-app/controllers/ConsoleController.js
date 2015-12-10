@@ -93,4 +93,10 @@ function setCaretPosition(elemId, caretPos) {
                 elem.focus();
         }
     }
-}
+};
+
+function toggleTree() {
+	$scope.tree_toggle.click(function () {
+		$(this).parent().children('ul.tree').toggle(200);
+	});
+};
