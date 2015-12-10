@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  root 'home#index'
+  root 'application#index'
   #get '*path' => 'application#index'
   
   resources :user_histories
@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   get '/logout' => 'sessions#destroy'
   
+  post '/console' => 'console#index'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -28,8 +30,6 @@ Rails.application.routes.draw do
   get '/home' => 'home#index'
   get '/' => 'home#index'
   # Example of regular route:
-  post '/consoles' => 'console#index'
-  #post '/console/submit' => 'console#create'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

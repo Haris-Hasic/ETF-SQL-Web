@@ -2,6 +2,40 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.panel-heading {
+    padding: 5px 15px;
+    text-align: center;
+}
+
+.panel-footer {
+	padding: 1px 15px;
+	color: #A0A0A0;
+	text-align: center;
+}
+
+.panel-footer a:hover {
+	background-color: #F6F6F6;
+}
+
+.profile-img {
+	width: 96px;
+	height: 96px;
+	margin: 0 auto 10px;
+	display: block;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+}
+
+.container {
+	margin-top: 40px;
+	align: center !important;
+}
+
+.retrievePass {
+	padding-bottom: 5;
+}
+
 .carousel .item {
     width: 100%; /*slider width*/
     max-height: 92.2vh; /*slider height*/
@@ -13,6 +47,7 @@
 .carousel-inner {
     color: black;
 }
+
 /*full width container*/
 @media (max-width: 767px) {
     .block {
@@ -64,6 +99,10 @@
     height: 48px;
     margin: 10px;
     background-color: #ffff99;
+}
+
+.scriptButton { 
+   margin-top: 20px;
 }
 
 

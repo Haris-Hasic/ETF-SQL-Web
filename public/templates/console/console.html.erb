@@ -1,45 +1,98 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Console</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-</head>
-<body>
-<section data-ng-controller="ConsoleController" data-ng-init="init()">
-<div class="container">
-  <h1>Query</h1>
-  <div class="form-group">
+  <head>
+    <title>Console</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      
+      <div ng-controller = "UploadController">
+      
+        <!-- Button trigger modal -->
+        <button type="file" on-read-file="displayFileContents(contents)" class="scriptButton btn btn-primary launch-modal" data-toggle="modal" data-target="#myModal">
+          <i class="glyphicon glyphicon-cloud-upload"></i>&nbsp; Upload Script
+        </button>
+        
+        <!-- Button Connect -->
+        <button class="scriptButton btn btn-primary launch-modal">
+          <i class="glyphicon glyphicon-link"></i>&nbsp; Connect
+        </button>
+        
+        <!-- Button Disconnect -->
+        <button class="scriptButton btn btn-primary launch-modal">
+          <i class="glyphicon glyphicon-flash"></i>&nbsp; Disconnect
+        </button>
 
-	<textarea class="form-control" style="font-family:'Courier New'" rows="20" id="query" data-ng-model="scriptContent" ng-change="textEvaluate()" ng-trim="false"></textarea>
-	<button type="submit" class="btn btn-primary" data-ng-click="create()">Submit</button>
-
-	<h1>Results</h1>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+              </div>
+            
+              <div class="modal-header">
+                <input type="file" on-read-file="displayFileContents(contents)" />
+              </div>
+            
+              <div class="modal-body">
+                <textarea id="textareaID" ng-model="results" class="form-control" rows="16"></textarea>
+              </div>
+            
+              <div class="modal-footer">
+                <div class="input-group">
+                  <input type="textbox" placeholder="Search for Keywords..." class="form-control" ng-model="query.first">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="search()">Search</button>
+                  </span>
+                </div>
+              </div>
+            
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" data-ng-click="executeScript()">Execute Script</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <section data-ng-controller="ConsoleController" data-ng-init="init()">
+  
+        <h1>Query</h1>
+        <div class="form-group">
+          <textarea class="form-control" style="font-family:'Courier New'" rows="20" id="query" data-ng-model="scriptContent" ng-change="textEvaluate()" ng-trim="false"></textarea>
+          <button type="submit" class="scriptButton btn btn-primary" data-ng-click="create()">Submit</button>
+      
+          <h1>Results</h1>
+          <table class="table table-striped" ng-if="queryResult == 'Success'">
+            <thead>
+              <th>Index</th>
+              <th data-ng-repeat="i in column_names">{{i}}</th>
+            </thead>  
+            <tbody>
+              <tr data-ng-repeat="e in rows_result">
+                <td>{{$index+1}}</td>
+    	        <td data-ng-repeat="j in e track by $index">{{j}}</td>
+	      </tr>
+            </tbody>
+          </table>
 	
-    <table class="table table-striped" ng-if="queryResult == 'Success'">
-        <thead>
-            <th>Index</th>
-            <th data-ng-repeat="i in column_names">{{i}}</th>
-        </thead>  
-        <tbody>
-			<tr data-ng-repeat="e in rows_result">
-				<td>{{$index+1}}</td>
-				<td data-ng-repeat="j in e track by $index">{{j}}</td>
-			</tr>
-		</tbody>
-	</table>
-	
-	<div ng-if="queryResult == 'Error'">
-		{{ error }} at line	{{ line }}, column {{ column }}
-	</div>
-
-    <div class="clearfix visible-lg"></div>
-  </div>
-</div>
-</section>
-</body>
+          <div ng-if="queryResult == 'Error'"> 
+            {{ error }} at line	{{ line }}, column {{ column }}
+          </div>
+      
+          <div class="clearfix visible-lg"></div>
+        </div>
+      </div>
+    </section>
+    
+  </body>
 </html>
 
