@@ -4,7 +4,12 @@ class UserHistoriesController < ApplicationController
   # GET /user_histories
   # GET /user_histories.json
   def index
-    @user_histories = UserHistory.all
+    @user_histories = Array.new()
+    user_id = params[:user_id]
+    @user_histories = UserHistory.where('user_id = ?',user_id).limit(20)
+    puts @user_histories
+    json = @user_histories.to_json
+    render json: json
   end
 
   # GET /user_histories/1
@@ -25,7 +30,8 @@ class UserHistoriesController < ApplicationController
   # POST /user_histories.json
   def create
     @user_history = UserHistory.new()
-    @user_history.scriptcontent = params[:scriptcontent]
+    @user_history.scriptcontent = params[:scriptContent]
+    @user_history.user_id = params[:user_id]
     respond_to do |format|
       if @user_history.save
         format.html { render :new }

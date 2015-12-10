@@ -1,4 +1,4 @@
-app.controller('ConsoleController', ['$scope', '$location','$http', function($scope, $location, $http) {
+app.controller('ConsoleController', ['$rootScope','$scope', '$location','$http', function($rootScope,$scope, $location, $http) {
 	
 	var keywords = [ "SELECT", "FROM", "WHERE", "GROUP", "ORDER", "BY", "AS", 
 	                 "CREATE", "INSERT", "INTO", "VALUES",
@@ -7,11 +7,34 @@ app.controller('ConsoleController', ['$scope', '$location','$http', function($sc
 	$scope.init = function() {
 		$scope.queryResult = "Your results will be shown here!";
 	};
-	
+	$scope.getUserHistory = function() {
+		$scope.user_queries = [];
+		if($rootScope.session.current_user) {
+		$http({
+    		url: '/user_histories.json', 
+    		method: "GET",
+    		params: {user_id: $rootScope.session.current_user.id}
+ 			}).then(historySuccessCallback, historyErrorCallback);
+		}
+	};
+	var historySuccessCallback = function(response) {
+		angular.forEach(response.data, function (value) {
+			$scope.user_queries.push(value);
+		});
+	};
+		var historyErrorCallback = function(response) {
+		console.log(response);
+	};
+	$scope.insertOldQuery = function(index) {
+		$scope.scriptContent = $scope.user_queries[index].scriptcontent;
+		console.log($scope.scriptContent);
+	};
+
 	$scope.create = function () {
 		var sc = $scope.scriptContent;
 		var data = {
-			scriptContent : sc
+			scriptContent : sc,
+			user_id: $rootScope.session.current_user.id
 		};
 		var successCallback = {};
 		$scope.column_names = [];
