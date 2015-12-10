@@ -2,12 +2,13 @@ app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http
 	  
 	$scope.init = function(){	
 	}
-	  
+	
 	$scope.logout = function(){
-		$rootScope.session.current_user = undefined;
 		$rootScope.session = undefined;
-		$scope.session.current_user = undefined;
 		$scope.session = undefined;
+		
+		$location.path("/");
+		console.log($location);
 	}
 	
 	$scope.login = function(){
