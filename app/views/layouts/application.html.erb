@@ -71,46 +71,52 @@
             <li><a href="#">Page 3</a></li>-->
           </ul>
          
-          <ul class="nav navbar-nav navbar-right" data-ng-init="test()">
-          <div ng-if="$rootScope.session">
-            <li><a href="/#/console"></span>Konzola</a></li>
-            <li>
-              <a href="#">
-                <span class="glyphicon glyphicon-user"></span>
-                <p data-ng-bind="username"></p>
-              </a>
-            </li> <!-- treba username -->
-            <li>
-              <a href="/#/logout">
-                <span class="glyphicon glyphicon-log-out"></span>
-                <%= t('Logout') %>
-              </a>
-            </li>
-          </div>
-          <div data-ng-if="!$rootScope.session">
-            <li>
-              <a href="/#/signup">
-                <span class="glyphicon glyphicon-user"></span>
-                <%= t('Register') %>
-              </a>
-            </li>
-            <li>
-              <a href="/#/login">
-                <span class="glyphicon glyphicon-log-in"></span>
-                <%= t('Login') %>
-              </a>
-            </li>
-            </div>
+         
+            <div data-ng-controller="SessionsController" data-ng-init="init()">
+             <ul class="nav navbar-nav navbar-right">
+                <div ng-if="session">
+                  <li><a href="/#/console"></span>Konzola</a></li>
+                  <li>
+                    <a href="#">
+                      <span class="glyphicon glyphicon-user"></span>
+                      <p data-ng-bind="session.current_user.username"></p>
+                    </a>
+                  </li> <!-- treba username -->
+                  <li>
+                    <a href="/#/logout">
+                      <span class="glyphicon glyphicon-log-out"></span>
+                      <%= t('Logout') %>
+                    </a>
+                  </li>
+                </div>
+          
+          
+                  <div data-ng-if="!session">
+                    <li>
+                      <a href="/#/signup">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <%= t('Register') %>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/#/login">
+                        <span class="glyphicon glyphicon-log-in"></span>
+                        <%= t('Login') %>
+                      </a>
+                    </li>
+                    </div>
+            
+            
+            
+            
             <li></li>
           </ul>
+          </div>
         </div>
       </div>
     </nav>
 
-
-    <div ng-view="">
-	
-    </div>
+    <%= yield %>
     
   </body>
 </html>

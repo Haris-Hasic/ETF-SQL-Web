@@ -1,5 +1,8 @@
 app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http', function($rootScope,$scope, $location, $http) { 
 	  
+	$scope.init = function(){	
+	}
+	  
 	$scope.login = function(){
 		var data = {
 			user: {
@@ -15,7 +18,8 @@ app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http
 		$scope.success = "Success";
 		$rootScope.session = {};
 		$rootScope.session.current_user = response.data.user_id;
-		console.log($rootScope.session.current_user);
+		
+		$scope.session.current_user = response.data.user_id; //ovo se koristi
 	}
 	
 	var errorCallback = function(response) {

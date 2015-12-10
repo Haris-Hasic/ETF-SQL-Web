@@ -8,10 +8,11 @@ class SessionsController < ApplicationController
 		if @user && @user.authenticate(params[:session][:user][:password])
 		  session[:user_id] = @user
 		  session[:current_username] = @user[:username]
-		  json = {:user_id => session[:user_id], :current_username => session[:current_username]}
+		  json = {:user_id => session[:user_id], :current_username => session[:current_username]}.to_json
 		  render json: json
 		else
-		  redirect_to '/#/login' #pogresan password
+		  render json: {}.to_json
+		  #redirect_to '/#/login' #pogresan password
 		end
 	end
 
