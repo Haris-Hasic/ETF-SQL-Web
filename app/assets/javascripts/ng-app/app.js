@@ -16,6 +16,10 @@ app.config(function($routeProvider) {
 			controller: 'ConsoleController',
 			templateUrl: '../templates/console/console.html.erb',
 		})
+		.when('/logout', {
+			controller: 'SessionsController',
+			templateUrl: '../templates/user/logout.html'
+		})
 		
 		// Default routing
 		.otherwise({
