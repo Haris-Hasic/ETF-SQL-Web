@@ -8,7 +8,7 @@ app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http
 		$rootScope.session = undefined;
 		$scope.session.current_user = undefined;
 		$scope.session = undefined;
-	}  
+	}
 	
 	$scope.login = function(){
 		var data = {
@@ -19,6 +19,7 @@ app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http
 		};
 
 		$http.post('/login.json', data).then(successCallback, errorCallback);
+		$location.path("/console");
 	}
 	
 	var successCallback = function(response) {
