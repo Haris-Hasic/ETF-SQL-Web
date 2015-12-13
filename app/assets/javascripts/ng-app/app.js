@@ -12,13 +12,21 @@ app.config(function($routeProvider) {
 			controller: 'SessionsController',
 			templateUrl: '../templates/user/login.html',
 		})
+		.when('/logout', {
+			controller: 'SessionsController',
+			templateUrl: '../templates/user/logout.html'
+		})
 		.when('/console', {
 			controller: 'ConsoleController',
 			templateUrl: '../templates/console/console.html.erb',
 		})
-		.when('/logout', {
-			controller: 'SessionsController',
-			templateUrl: '../templates/user/logout.html'
+		.when('/resetPassword/:token', {
+			controller: 'PasswordResetController',
+			templateUrl: '../templates/user/resetPassword.html',
+		})
+		.when('/forgottenPassword', {
+			controller: 'PasswordResetController',
+			templateUrl: '../templates/user/forgottenPassword.html'
 		})
 		
 		// Default routing
