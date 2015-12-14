@@ -1,10 +1,17 @@
 class ConnectionsController < ApplicationController
   before_action :set_connection, only: [:show, :edit, :update, :destroy]
+  before_action :set_preference, only: [:show, :destroy]
 
   # GET /connections
   # GET /connections.json
   def index
-    @connections = Connection.all
+    user_id = params[:user_id]
+    @preference = {}
+    @preference = Preference.where('user_id = ?',user_id).limit(1)
+    @connections = Array.new()
+    @connections = Connection.where('preference_id = ?',@preference[0][:id]).limit(20)
+    json = @connections.to_json
+    render json: json
   end
 
   # GET /connections/1
@@ -19,6 +26,8 @@ class ConnectionsController < ApplicationController
 
   # GET /connections/1/edit
   def edit
+    @connection = Connection.find(params[:id])
+
   end
 
   # POST /connections
@@ -40,9 +49,14 @@ class ConnectionsController < ApplicationController
   # PATCH/PUT /connections/1
   # PATCH/PUT /connections/1.json
   def update
+    @connection[:databaseusername] = params[:databaseusername]
+    @connection[:databasetype] = params[:databasetype]
+    @connection[:databaselocation] = params[:databaselocation]
+    @connection[:sid] = params[:sid]
+    @connection[:port] = params[:port]
     respond_to do |format|
-      if @connection.update(connection_params)
-        format.html { redirect_to @connection, notice: 'Connection was successfully updated.' }
+      if @connection.update(params.permit(:id,:databaseusername,:databaselocation,:databasetype,:sid,:port,:databasepassword_digest))
+        format.html { render :new }
         format.json { render :show, status: :ok, location: @connection }
       else
         format.html { render :edit }

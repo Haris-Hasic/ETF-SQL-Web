@@ -1,8 +1,10 @@
 class ConsoleController < ApplicationController
   def index
   	sc = params[:scriptContent]
+  	puts params[:connection]
   	rows = []
   	columns = []
+  	#conn = OCI8.new(params[:connection][:databaseusername], params[:connection][:databasepassword_digest], '//'+params[:connection][:databaselocation]+':'+params[:connection][:port]+'/'+params[:connection][:sid])
     conn = OCI8.new('hh16098', 'Ctilv7Ef', '//80.65.65.66:1521/ETFLAB.DB.LAB.ETF.UNSA.BA')
     
 	begin

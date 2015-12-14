@@ -28,7 +28,10 @@ app.config(function($routeProvider) {
 			controller: 'PasswordResetController',
 			templateUrl: '../templates/user/forgottenPassword.html'
 		})
-		
+		.when('/preference', {
+			controller: 'PreferenceController',
+			templateUrl: '../templates/user/preference.html'
+		})
 		// Default routing
 		.otherwise({
 			controller: 'HomeController',

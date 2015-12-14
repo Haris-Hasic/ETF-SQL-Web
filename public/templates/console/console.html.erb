@@ -28,6 +28,7 @@
           <i class="glyphicon glyphicon-flash"></i>&nbsp; Disconnect
         </button>
         <!-- Dropdown User History -->
+      <div class="btn-group">
         <div class="dropdown scriptButton">
           <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" data-ng-click="getUserHistory()">User History
           <span class="caret"></span></button>
@@ -35,13 +36,26 @@
             <li data-ng-repeat="uh in user_queries"><a href="" data-ng-click="insertOldQuery($index)">{{uh.scriptcontent}}</a></li>
           </ul>
         </div>
-        <!-- Modal -->
+      </div>
+      <div class="btn-group">
+        <div class="dropdown scriptButton">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" data-ng-click="getConnections()">Connections
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li data-ng-repeat="con in connections"><a href="" data-ng-click="insertOldConnections($index)">User {{con.databasename}} at {{con.databaselocation}} running {{con.databasetype}}</a></li>
+          </ul>
+           <button class="connectionButton btn btn-primary"  data-toggle="modal" data-target="#ModalConnection">
+              <i class="glyphicon glyphicon-flash"></i>&nbsp; Edit connections
+           </button>
+        </div>
+      </div>
+        <!-- Modal for Script -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                <h4 class="modal-title" id="myModalLabel">Upload Script</h4>
               </div>
             
               <div class="modal-header">
@@ -65,6 +79,47 @@
                 <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary" data-ng-click="executeScript()">Execute Script</button>
               </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal for Connections-->
+        <div class="modal fade" id="ModalConnection" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Connection Settings</h4>
+              </div>
+            
+              <div class="modal-header">
+                <div class="btn-group">
+                  <div class="dropdown scriptButton">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" data-ng-click="getConnections()">Connections
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                      <li data-ng-repeat="con in connections"><a href="" data-ng-click="insertOldConnectionsForEdit($index)">User {{con.databasename}} at {{con.databaselocation}} running {{con.databasetype}}</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            <form role="form" novalidate>
+              <div class="modal-body">
+
+                <div class="form-group">
+                <label for="current_connection.databasetype">Database type: </label><input type="textbox"  class="form-control" data-ng-model="current_connection.databasetype" />{{databasetype}}
+                <label for="current_connection.databaseusername">Database user: </label><input type="textbox" class="form-control" data-ng-model="current_connection.databaseusername" />
+                <label for="current_connection.databasepassword">Database password: </label><input type="password"  class="form-control" data-ng-model="current_connection.databasepassword" />
+                <label for="current_connection.databaselocation">Database location: </label><input type="textbox" class="form-control" data-ng-model="current_connection.databaselocation" />
+                <label for="current_connection.sid">Database SID: </label><input type="textbox" class="form-control" data-ng-model="current_connection.sid" />
+                <label for="current_connection.port">Database port: </label><input type="textbox" class="form-control" data-ng-model="current_connection.port" />
+                </div>
+              </div>       
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-default" data-ng-click="createNewConnection()">New Connection</button>
+                <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" data-ng-click="saveConnection()">Save</button>
+              </div>
+            </form>
             </div>
           </div>
         </div>

@@ -5,6 +5,8 @@ class PreferencesController < ApplicationController
   # GET /preferences.json
   def index
     @preferences = Preference.all
+    json = @preferences.to_json
+    render json: json
   end
 
   # GET /preferences/1
