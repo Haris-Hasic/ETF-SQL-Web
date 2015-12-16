@@ -7,7 +7,6 @@ class UserHistoriesController < ApplicationController
     @user_histories = Array.new()
     user_id = params[:user_id]
     @user_histories = UserHistory.where('user_id = ?',user_id).limit(20)
-    puts @user_histories
     json = @user_histories.to_json
     render json: json
   end

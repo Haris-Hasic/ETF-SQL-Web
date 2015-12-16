@@ -33,11 +33,17 @@ class ConnectionsController < ApplicationController
   # POST /connections
   # POST /connections.json
   def create
-    @connection = Connection.new(connection_params)
-
+    @connection = Connection.new()
+    @connection[:databaseusername] = params[:databaseusername]
+    @connection[:databasetype] = params[:databasetype]
+    @connection[:databaselocation] = params[:databaselocation]
+    @connection[:sid] = params[:sid]
+    @connection[:port] = params[:port]
+    @connection[:databasepassword_digest] = params[:databasepassword_digest]
+    @connection[:preference_id] = params[:preference_id]
     respond_to do |format|
       if @connection.save
-        format.html { redirect_to @connection, notice: 'Connection was successfully created.' }
+        format.html { render :new }
         format.json { render :show, status: :created, location: @connection }
       else
         format.html { render :new }
@@ -54,6 +60,7 @@ class ConnectionsController < ApplicationController
     @connection[:databaselocation] = params[:databaselocation]
     @connection[:sid] = params[:sid]
     @connection[:port] = params[:port]
+    @connection[:databasepassword_digest] = params[:databasepassword_digest]
     respond_to do |format|
       if @connection.update(params.permit(:id,:databaseusername,:databaselocation,:databasetype,:sid,:port,:databasepassword_digest))
         format.html { render :new }

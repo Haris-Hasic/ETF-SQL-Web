@@ -30,6 +30,7 @@ app
 })
 .controller('UploadController', ['$scope','$http', function($scope, $http) {
 
+
     $scope.displayFileContents = function(contents) {
         $scope.results = contents;
     };

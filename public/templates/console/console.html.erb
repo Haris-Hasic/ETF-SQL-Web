@@ -10,22 +10,10 @@
   </head>
   <body>
     <div class="container">
-      
       <div ng-controller = "UploadController">
-      
         <!-- Button trigger modal -->
         <button type="file" on-read-file="displayFileContents(contents)" class="scriptButton btn btn-primary launch-modal" data-toggle="modal" data-target="#myModal">
           <i class="glyphicon glyphicon-cloud-upload"></i>&nbsp; Upload Script
-        </button>
-        
-        <!-- Button Connect -->
-        <button class="scriptButton btn btn-primary launch-modal">
-          <i class="glyphicon glyphicon-link"></i>&nbsp; Connect
-        </button>
-        
-        <!-- Button Disconnect -->
-        <button class="scriptButton btn btn-primary launch-modal">
-          <i class="glyphicon glyphicon-flash"></i>&nbsp; Disconnect
         </button>
         <!-- Dropdown User History -->
       <div class="btn-group">
@@ -37,6 +25,7 @@
           </ul>
         </div>
       </div>
+      <!-- Dropdown Connection Choice-->
       <div class="btn-group">
         <div class="dropdown scriptButton">
           <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" data-ng-click="getConnections()">Connections
@@ -48,6 +37,26 @@
               <i class="glyphicon glyphicon-flash"></i>&nbsp; Edit connections
            </button>
         </div>
+      </div>
+        <!-- Button Connect -->
+        <button class="scriptButton btn btn-primary launch-modal" data-ng-click="connect()">
+          <i class="glyphicon glyphicon-link"></i>&nbsp; Connect
+        </button>
+        
+        <!-- Button Disconnect -->
+        <button class="scriptButton btn btn-primary launch-modal" data-ng-click="disconnect()">
+          <i class="glyphicon glyphicon-flash"></i>&nbsp; Disconnect
+        </button>
+        <!-- Connection Status alert-->
+      <div class="btn-group">
+          <div class="alert alert-danger" ng-show="!connectionStatus.status"> 
+            Connection Closed!
+          </div>
+      </div>
+      <div class="btn-group">
+          <div class="alert alert-success" ng-show="connectionStatus.status"> 
+            Connection Open!
+          </div>
       </div>
         <!-- Modal for Script -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -106,9 +115,9 @@
               <div class="modal-body">
 
                 <div class="form-group">
-                <label for="current_connection.databasetype">Database type: </label><input type="textbox"  class="form-control" data-ng-model="current_connection.databasetype" />{{databasetype}}
+                <label for="current_connection.databasetype">Database type: </label><input type="textbox"  class="form-control" data-ng-model="current_connection.databasetype" />
                 <label for="current_connection.databaseusername">Database user: </label><input type="textbox" class="form-control" data-ng-model="current_connection.databaseusername" />
-                <label for="current_connection.databasepassword">Database password: </label><input type="password"  class="form-control" data-ng-model="current_connection.databasepassword" />
+                <label for="current_connection.databasepassword_digest">Database password: </label><input type="password"  class="form-control" data-ng-model="current_connection.databasepassword_digest" />
                 <label for="current_connection.databaselocation">Database location: </label><input type="textbox" class="form-control" data-ng-model="current_connection.databaselocation" />
                 <label for="current_connection.sid">Database SID: </label><input type="textbox" class="form-control" data-ng-model="current_connection.sid" />
                 <label for="current_connection.port">Database port: </label><input type="textbox" class="form-control" data-ng-model="current_connection.port" />

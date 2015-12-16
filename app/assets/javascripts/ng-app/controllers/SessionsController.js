@@ -27,7 +27,6 @@ app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http
 		$scope.success = "Success";
 		$rootScope.session = {};
 		$rootScope.session.current_user = response.data.user_id;
-		
 		$scope.session.current_user = response.data.user_id; //ovo se koristi
 	}
 	
