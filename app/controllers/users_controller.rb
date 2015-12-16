@@ -17,10 +17,27 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
+  
+  # GET /forgotten_password
+  def forgotten_password
+    @user = User.find_by_email(params[:email])
+    params[:id] = @user[:i]
+    UserMailer.forgotten_password(@user).deliver_now
+    redirect_to "/#/"
+  end
 
   # GET /users/1/edit
   def edit
+    #dvije linije ispod premjestene u get zahtjev za /forgotten_password
+    #@user = User.find_by_email(params[:email])
+    #UserMailer.forgotten_password(@user).deliver_now
   end
+
+  #def forgotten_password()
+  #  @user = User.find_by_email(:params[])
+  #  @user = User.find(:params[:id])
+  #  UserMailer.forgotten_password(@user).deliver_now
+  #end
 
   # POST /users
   # POST /users.json

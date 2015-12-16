@@ -9,8 +9,10 @@ app.controller('SignupController', ['$scope', '$location', '$http', function($sc
 				password_confirmation: $scope.password_confirmation
 			}
 		};
-
-		$http.post('/users', data).then(successCallback, errorCallback);
+		
+		
+		$http.post('/users/1/edit', {params: {email: $scope.email}}).then(successCallback, errorCallback);
+		//$http.params().post('/users', data).then(successCallback, errorCallback);
 	}
 	
 	var successCallback = function(response) {
