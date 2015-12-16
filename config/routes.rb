@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :connections
   resources :users
   
+  get '/forgotten_password' => 'users#forgotten_password'
   resources :users do
 	member do
 		get :confirm_email
