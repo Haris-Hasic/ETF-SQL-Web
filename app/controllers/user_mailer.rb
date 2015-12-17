@@ -6,8 +6,9 @@ class UserMailer < ActionMailer::Base
 		mail(:to => "#{user.username} <#{user.email}>", :subject => "Registration Confirmation")
 	end
 	
-	def forgotten_password(user)
+	def forgotten_password(user, token)
 		@user = user
+		@token = token
 		mail(:to => "#{user.username} <#{user.email}>", :subject => "Forgotten password")
 	end
 end

@@ -22,8 +22,29 @@ class UsersController < ApplicationController
   def forgotten_password
     @user = User.find_by_email(params[:email])
     params[:id] = @user[:i]
-    UserMailer.forgotten_password(@user).deliver_now
-    redirect_to "/#/"
+    
+    #random value
+    value = ""; 20.times{value << ((rand(2)==1?65:97) + rand(25)).chr}
+    @token = value
+    
+    #mail the user his token in a link
+    UserMailer.forgotten_password(@user, @token).deliver_now
+    
+    #insert token into database
+    @user_reset_password = UserResetPassword.new()
+    @user_reset_password.users_id = @user.id
+    @user_reset_password.token = @token
+    
+    respond_to do |format|
+      if @user_reset_password.save
+        format.html { render :new }
+        format.json { render :show, status: :created, location: @user_reset_password }
+      else
+        format.html { render :new }
+        format.json { render json: @user_reset_password.errors, status: :unprocessable_entity }
+      end
+    end
+    
   end
 
   # GET /users/1/edit

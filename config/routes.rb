@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   resources :users
   
   get '/forgotten_password' => 'users#forgotten_password'
+  post '/resetPassword' => 'user_reset_password#restart'
+  get '/resetPassword' => 'user_reset_password#activate'
+  
   resources :users do
 	member do
 		get :confirm_email

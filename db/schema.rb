@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151103224350) do
+ActiveRecord::Schema.define(version: 20151217888888) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,15 @@ ActiveRecord::Schema.define(version: 20151103224350) do
   end
 
   add_index "user_histories", ["user_id"], name: "index_user_histories_on_user_id", using: :btree
+
+  add_index "user_reset_password", ["users_id"], name: "index_user_reset_password_on_users_id", using: :btree
+
+  create_table "user_reset_passwords", force: :cascade do |t|
+    t.integer "users_id"
+    t.string  "token"
+  end
+
+  add_index "user_reset_passwords", ["users_id"], name: "index_user_reset_passwords_on_users_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
