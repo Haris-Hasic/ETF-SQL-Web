@@ -7,11 +7,14 @@ class UserResetPasswordController < ApplicationController
         @user.password = params[:params][:password]
         @user.password_confirmation = params[:params][:password_confirmation]
         if @user.save
+            UserResetPassword.where(users_id: @user.id).destroy_all
+            
 		    session[:user_id] = @user
 		    session[:current_username] = @user[:username]
 		    json = {:user_id => session[:user_id], :current_username => session[:current_username]}.to_json
 		    render json: json
 		else
+		    render.status(500)
 		    render json: {}.to_json
 		end
         
@@ -29,6 +32,8 @@ class UserResetPasswordController < ApplicationController
 		  json = {:user_id => @user.id, :email => @user.email}.to_json
 		  render json: json
 		else
+		  #user_res_pass ne postoji
+		  render.status(400)
 		  render json: {}.to_json
 		end
     end

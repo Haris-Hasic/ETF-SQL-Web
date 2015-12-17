@@ -20,7 +20,6 @@ app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http
 		};
 
 		$http.post('/login.json', data).then(successCallback, errorCallback);
-		$location.path("/console");
 	}
 	
 	var successCallback = function(response) {
@@ -28,6 +27,7 @@ app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http
 		$rootScope.session = {};
 		$rootScope.session.current_user = response.data.user_id;
 		$scope.session.current_user = response.data.user_id; //ovo se koristi
+		$location.path("/console");
 	}
 	
 	var errorCallback = function(response) {
