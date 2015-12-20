@@ -234,25 +234,3 @@ function toggleTree() {
 		$(this).parent().children('ul.tree').toggle(200);
 	});
 };
-
-app.controller('TreeController', function() {
-  this.bag = [{
-      label: 'Glasses',
-      value: 'glasses',
-      children: [{
-        label: 'Top Hat',
-        value: 'top_hat'
-      },{
-        label: 'Curly Mustache',
-        value: 'mustachio'
-      }]
-  }];
-
-  this.awesomeCallback = function(node, tree) {
-    // Do something with node or tree
-  };
-
-  this.otherAwesomeCallback = function(node, isSelected, tree) {
-    // Do soemthing with node or tree based on isSelected
-  }
-});

@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/ivh-treeview.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   </head>
@@ -135,7 +136,12 @@
       </div>
       
       <section data-ng-controller="ConsoleController" data-ng-init="init()">
-  
+      
+        <div ng-controller="TreeController as drvo">
+          <input type="text" ng-model="bagSearch" />
+          <div ivh-treeview="drvo.bag" ivh-treeview-filter="bagSearch"></div>
+        </div>
+        
         <h1>Query</h1>
         <div class="form-group">
           <textarea class="form-control" style="font-family:'Courier New'" rows="20" id="query" data-ng-model="scriptContent" ng-change="textEvaluate()" ng-trim="false"></textarea>
