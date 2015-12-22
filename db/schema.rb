@@ -48,8 +48,6 @@ ActiveRecord::Schema.define(version: 20151217888888) do
 
   add_index "user_histories", ["user_id"], name: "index_user_histories_on_user_id", using: :btree
 
-  add_index "user_reset_password", ["users_id"], name: "index_user_reset_password_on_users_id", using: :btree
-
   create_table "user_reset_passwords", force: :cascade do |t|
     t.integer "users_id"
     t.string  "token"

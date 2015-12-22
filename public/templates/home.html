@@ -1,57 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>ETF SQL Query Tool</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  </head>
-  <body>
+<section data-ng-controller="HomeController" data-ng-init="init()">
 
-    <section data-ng-controller="HomeController" data-ng-init="init()">
+  <div id="carousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carousel" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel" data-slide-to="1"></li>
+      <li data-target="#carousel" data-slide-to="2"></li>
+    </ol>
 
-<div id="carousel" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carousel" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel" data-slide-to="1"></li>
-    <li data-target="#carousel" data-slide-to="2"></li>
-  </ol>
-
-  <div class="carousel-inner">
-    <div class="item active">
-      <a href="#"><img src="/assets/plane.jpg" alt="Oracle" /></a>
-      <div class="carousel-caption">
-        <h3>Oracle</h3>
-        <p>Studenti na predmetu OBP imau priliku raditi sa Oracle bazom podataka.</p>
+    <div class="carousel-inner">
+      <div class="item active">
+        <a href="#"><img src="/assets/plane.jpg" alt="Oracle" /></a>
+        <div class="carousel-caption">
+          <h3>Oracle</h3>
+          <p>Studenti na predmetu OBP imau priliku raditi sa Oracle bazom podataka.</p>
+        </div>
+      </div>
+      <div class="item">
+        <a href="#"><img src="/assets/etf.jpg" alt="ETF" /></a>
+        <div class="carousel-caption">
+          <h3>Elektrotehnički fakultet</h3>
+          <p>Elektrotehnički fakultet u Sarajevu je osnovan 1961. godine, a prva generacija studenata upisana je godinu dana ranije, u okviru tad postojećeg Tehničkog fakulteta u Sarajevu.</p>
+        </div>
+      </div>
+      <div class="item">
+        <a href="#"><img src="/assets/database.jpg" alt="Data Center" /></a>
+        <div class="carousel-caption">
+          <h3>Baze podataka</h3>
+          <p>Studenti imaju mogućnost da pored rada sa Oracle bazom podatka isprobaju i rad sa PostgreSQL i MySQL bazama podataka.</p>
+        </div>
       </div>
     </div>
-    <div class="item">
-      <a href="#"><img src="/assets/etf.jpg" alt="ETF" /></a>
-      <div class="carousel-caption">
-        <h3>Elektrotehnički fakultet</h3>
-        <p>Elektrotehnički fakultet u Sarajevu je osnovan 1961. godine, a prva generacija studenata upisana je godinu dana ranije, u okviru tad postojećeg Tehničkog fakulteta u Sarajevu.</p>
-      </div>
-    </div>
-    <div class="item">
-      <a href="#"><img src="/assets/database.jpg" alt="Data Center" /></a>
-      <div class="carousel-caption">
-        <h3>Baze podataka</h3>
-        <p>Studenti imaju mogućnost da pored rada sa Oracle bazom podatka isprobaju i rad sa PostgreSQL i MySQL bazama podataka.</p>
-      </div>
-    </div>
+
+    <a class="left carousel-control" href="#carousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
   </div>
 
-  <a class="left carousel-control" href="#carousel" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" href="#carousel" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
-</div>
-    </section>
-  </body>
-</html>
-
-
+</section>

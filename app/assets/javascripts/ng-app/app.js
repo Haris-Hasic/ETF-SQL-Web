@@ -18,7 +18,7 @@ app.config(function($routeProvider) {
 		})
 		.when('/console', {
 			controller: 'ConsoleController',
-			templateUrl: '../templates/console/console.html.erb',
+			templateUrl: '../templates/console/console.html',
 		})
 		.when('/resetPassword/:token', {
 			controller: 'PasswordResetController',

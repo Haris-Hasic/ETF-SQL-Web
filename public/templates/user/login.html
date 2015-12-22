@@ -1,87 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>ETF SQL Query Tool</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  </head>
-  <body>
-   
-    <section data-ng-controller="SessionsController">
+<div class="container">
+	<section data-ng-controller="SessionsController">
   
-      <div class="container">
-	
-        <div class="row">
-          <div class="col-sm-6 col-md-4 col-md-offset-4">
-            <div class="panel panel-default">
-	      <div class="panel-heading">
-	        <strong> Log in !</strong>
-	      </div>
-	  
-	      <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-6 col-md-4 col-md-offset-4">
+        <div class="panel panel-default">
 
-	          <fieldset>
-	            <div class="row">
-		      <div class="center-block">
-		        <img class="profile-img" src="/assets/login.png" alt="Login">
-		      </div>
-		    </div>
-		
-		    <div class="row">
-	              <div class="col-sm-12 col-md-10  col-md-offset-1 ">
-		        <div class="form-group">
-		          <div class="input-group">
-		            <span class="input-group-addon">
-		              <i class="glyphicon glyphicon-envelope"></i>
-			    </span>
-			 
-		      	    <input class="form-control" placeholder="Email" name="username" type="text" autofocus ng-model="username">
-		          </div>
-	  	        </div>
-		   
-		        <div class="form-group">
-		          <div class="input-group">
-		            <span class="input-group-addon">
-			      <i class="glyphicon glyphicon-lock"></i>
-		            </span>
-		       
-		            <input class="form-control" placeholder="Password" name="password" type="password" value="" ng-model="password">
-		          </div>
-		        </div>
-		   
-		        <div class="form-group">
-		          <input type="submit" class="btn btn-lg btn-primary btn-block" value="Log in" ng-click="login()">
-		        </div>
-		      </div>
-	            </div>
-	          </fieldset>
+    			<div class="panel-heading">
+      			<strong> Log in !</strong>
+    			</div>
 
-	      </div>
-	      
-	      <div class="panel-footer"> 
-	        Don't have an account?! - <a href="#/signup" onClick=""> Sign Up Here. </a> <br>
-	        Forgot password?! - <a href="#/forgottenPassword" onClick=""> Retrieve Password. </a>
-	      </div>
-	      <div class="panel-footer"> 
-	      	SQL Tool, ETF Sarajevo.
-	      </div>
-	    
-            </div>
-          </div>
+			    <div class="panel-body">
+			      <fieldset>
+			      	<div class="row">
+			      		<div class="center-block">
+			        		<img class="profile-img" src="/assets/login.png" alt="Login">
+			      		</div>
+			    		</div>
+
+					    <div class="row">
+			          <div class="col-sm-12 col-md-10  col-md-offset-1 ">
+			        		<div class="form-group">
+			          		<div class="input-group">
+			            		<span class="input-group-addon">
+			              		<i class="glyphicon glyphicon-envelope"></i>
+				    					</span>
+			      	    		<input class="form-control" placeholder="Email" name="username" type="text" autofocus ng-model="username">
+			          		</div>
+				        	</div>
+			   
+				        	<div class="form-group">
+				          	<div class="input-group">
+				            	<span class="input-group-addon">
+					      				<i class="glyphicon glyphicon-lock"></i>
+				            	</span> 
+				            	<input class="form-control" placeholder="Password" name="password" type="password" value="" ng-model="password">
+				          	</div>
+				        	</div>
+			   
+			        		<div class="form-group">
+			          		<input type="submit" class="btn btn-lg btn-primary btn-block" value="Log in" ng-click="login()">
+			        		</div>
+			      		</div>
+          		</div>
+        		</fieldset>
+    			</div>
+    
+			    <div class="panel-footer"> 
+			      Don't have an account?! - <a href="#/signup" onClick=""> Sign Up Here. </a> <br>
+			      Forgot password?! - <a href="#/forgottenPassword" onClick=""> Retrieve Password. </a>
+			    </div>
+
+			    <div class="panel-footer"> 
+			    	SQL Tool, ETF Sarajevo.
+			    </div>
+  
         </div>
       </div>
+    </div>
+      
 	  
 	  <div ng-if="success == 'Success'">
-		Uspješna prijava.
+			Uspješna prijava.
 	  </div>
 	  <div ng-if="success == 'Error'">
-		Prijava nije uspjela.
+			Prijava nije uspjela.
 	  </div>
 	  
-    </section>
-  </body>
-</html>
-
+	</section>
+</div>

@@ -13,10 +13,8 @@ app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http
 	
 	$scope.login = function(){
 		var data = {
-			user: {
-				email: $scope.username,
-				password: $scope.password,
-			}
+      email: $scope.username,
+      password: $scope.password,
 		};
 
 		$http.post('/login.json', data).then(successCallback, errorCallback);

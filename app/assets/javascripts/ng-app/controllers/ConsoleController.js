@@ -1,12 +1,19 @@
-app.controller('ConsoleController', ['$rootScope','$scope', '$location','$http', function($rootScope,$scope, $location, $http) {
+app.controller('ConsoleController', ['$rootScope', '$scope', '$location', '$http', function($rootScope, $scope, $location, $http) {
 	
 	var keywords = [ "SELECT", "FROM", "WHERE", "GROUP", "ORDER", "BY", "AS", 
 	                 "CREATE", "INSERT", "INTO", "VALUES",
-					 "UPDATE", "SET", "DELETE", "TRIGGER", "VIEW", "SEQUENCE" ];
+                   "UPDATE", "SET", "DELETE", "TRIGGER", "VIEW", "SEQUENCE" ];
 	$scope.connectionStatus = { status: false };
 	$scope.getConnections = function() {
-		$scope.connections = [];
-		if($rootScope.session.current_user) {
+	$scope.connections = [];
+  
+  $scope.init = function() {
+		$scope.queryResult = "Your results will be shown here!";
+		$scope.isnewconnection = false;
+	};
+  
+  // Fill connections list
+	if($rootScope.session.current_user) {
 		$http({
     		url: '/connections.json', 
     		method: "GET",
@@ -14,16 +21,26 @@ app.controller('ConsoleController', ['$rootScope','$scope', '$location','$http',
  			}).then(connectionsSuccessCallback, connectionsErrorCallback);
 		}
 	};
-	$scope.init = function() {
-		$scope.queryResult = "Your results will be shown here!";
-		$scope.isnewconnection = false;
+  
+  var connectionsSuccessCallback = function(response) {
+		angular.forEach(response.data, function (value) {
+			$scope.connections.push(value);
+		});
 	};
+  
+		var connectionsErrorCallback = function(response) {
+		console.log(response);
+	};
+  
+  // Load connection
 	var loadConnection = function(response) {
 		console.log(response);
 		$scope.current_connection = {
-			databaseLocation:response[0].databaselocation
+			databaseLocation: response[0].databaselocation
 		};
 	};
+  
+  // Get User History
 	$scope.getUserHistory = function() {
 		$scope.user_queries = [];
 		if($rootScope.session.current_user) {
@@ -34,46 +51,52 @@ app.controller('ConsoleController', ['$rootScope','$scope', '$location','$http',
  			}).then(historySuccessCallback, historyErrorCallback);
 		}
 	};
+  
 	var historySuccessCallback = function(response) {
 		angular.forEach(response.data, function (value) {
 			$scope.user_queries.push(value);
 		});
 	};
+  
 		var historyErrorCallback = function(response) {
 		console.log(response);
 	};
+  
+  // Insert Old Query
 	$scope.insertOldQuery = function(index) {
 		$scope.scriptContent = $scope.user_queries[index].scriptcontent;
 		console.log($scope.scriptContent);
 	};
-	var connectionsSuccessCallback = function(response) {
-		angular.forEach(response.data, function (value) {
-			$scope.connections.push(value);
-		});
-	};
-		var connectionsErrorCallback = function(response) {
-		console.log(response);
-	};
+
+  // Insert Old Connections
 	$scope.insertOldConnections = function(index) {
 		$scope.current_connection = angular.copy($scope.connections[index]);
 	};
+  
+  // Insert Old Connections For Edit
 	$scope.insertOldConnectionsForEdit = function(index) {
 		$scope.current_connection = angular.copy($scope.connections[index]);
 	};
+  
+  // Create New Connection
 	$scope.createNewConnection = function(index) {
-			$scope.current_connection.databasetype = '';
-			$scope.current_connection.databaseusername = '';
-			$scope.current_connection.databasepassword_digest = '';
-			$scope.current_connection.databaselocation = '';
-			$scope.current_connection.sid = '';
-			$scope.current_connection.port = '';
+      $scope.current_connection = {
+        databasetype: '',
+        databaseusername: '',
+        databasepassword_digest: '',
+        databaselocation: '',
+        sid: '',
+        port: ''
+      };
 			$scope.isnewconnection = true;
 	};
+  
+  // Save Connection
 	$scope.saveConnection = function() {
-		console.log($scope.current_connection.preference_id);
+		//console.log($scope.current_connection.preference_id);
 		if(!$scope.isnewconnection) {
 			$http({
-    		url: '/connections/'+$scope.current_connection.id, 
+    		url: '/connections/' + $scope.current_connection.id, 
     		method: "PUT",
     		params: {
     			databasetype: $scope.current_connection.databasetype, 
@@ -94,19 +117,23 @@ app.controller('ConsoleController', ['$rootScope','$scope', '$location','$http',
     			databaseusername: $scope.current_connection.databaseusername, 
     			databasepassword_digest: $scope.current_connection.databasepassword_digest, 
     			databaselocation: $scope.current_connection.databaselocation,
-    			preference_id: $scope.current_connection.preference_id,
+    			preference_id: $rootScope.session.current_user.id,
     			sid: $scope.current_connection.sid, 
     			port:$scope.current_connection.port
     		}
  			}).then(connectionsEditSuccessCallback, connectionsEditErrorCallback);
 		}
 	};
+  
 	var connectionsEditSuccessCallback = function(response) {
 		console.log(response);
 	};
+  
 	var connectionsEditErrorCallback = function(response) {
 		console.log(response);
 	};
+  
+  // Connect
 	$scope.connect = function() {
 				if($scope.current_connection) {
 					data = {
