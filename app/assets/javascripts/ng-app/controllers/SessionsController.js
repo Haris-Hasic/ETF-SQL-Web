@@ -1,12 +1,9 @@
 app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http', '$cookieStore', function($rootScope,$scope, $location, $http, $cookieStore) { 
 	  
 	$scope.init = function(){	
-		//$cookieStore.put("kuki", "ovo je kuki");
-		
 		if($cookieStore.get('userCookie'))
-		{
-			successCallback($cookieStore.get('userCookie'))
-		}
+			successCallback($cookieStore.get('userCookie'));
+		
 	}
 	
 	$scope.logout = function(){
@@ -23,10 +20,10 @@ app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http
       password: $scope.password,
 		};
 
-		$http.post('/login.json', data).then(successCallback, errorCallback);
+		$http.post('/login.json', data).then(successLogin, errorLogin);
 	}
 	
-	var successCallback = function(response) {
+	var successLogin = function(response) {
 		$scope.success = "Success";
 		$rootScope.session = {};
 		$rootScope.session.current_user = response.data.user_id;
@@ -36,7 +33,7 @@ app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http
 		$location.path("/console");
 	}
 	
-	var errorCallback = function(response) {
+	var errorLogin = function(response) {
 		$scope.success = "Error";
 	}
 
