@@ -14,11 +14,11 @@ app.controller('SignupController', ['$scope', '$location', '$http', function($sc
 	}
 	
 	var successCallback = function(response) {
-		$scope.success = "Success";
+		$location.path('/registered').replace();
 	}
 	
 	var errorCallback = function(response) {
-		$scope.success = "Error";
+		$scope.error = "Y";
 	}
 	
 }]);
