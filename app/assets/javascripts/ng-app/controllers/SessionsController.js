@@ -1,14 +1,17 @@
-app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http', function($rootScope,$scope, $location, $http) { 
+app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http', '$cookieStore', function($rootScope,$scope, $location, $http, $cookieStore) { 
 	  
 	$scope.init = function(){	
+		if($cookieStore.get('userCookie'))
+			successLogin($cookieStore.get('userCookie'));
+		
 	}
 	
 	$scope.logout = function(){
 		$rootScope.session = undefined;
 		$scope.session = undefined;
+		$cookieStore.remove('userCookie');
 		
 		$location.path("/");
-		console.log($location);
 	}
 	
 	$scope.login = function(){
@@ -17,18 +20,20 @@ app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http
       password: $scope.password,
 		};
 
-		$http.post('/login.json', data).then(successCallback, errorCallback);
+		$http.post('/login.json', data).then(successLogin, errorLogin);
 	}
 	
-	var successCallback = function(response) {
+	var successLogin = function(response) {
 		$scope.success = "Success";
 		$rootScope.session = {};
 		$rootScope.session.current_user = response.data.user_id;
 		$scope.session.current_user = response.data.user_id; //ovo se koristi
+		
+		$cookieStore.put('userCookie', response);
 		$location.path("/console");
 	}
 	
-	var errorCallback = function(response) {
+	var errorLogin = function(response) {
 		$scope.success = "Error";
 	}
 

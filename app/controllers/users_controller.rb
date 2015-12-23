@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    #@users = User.all
   end
 
   # GET /users/1
@@ -49,9 +49,6 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    #dvije linije ispod premjestene u get zahtjev za /forgotten_password
-    #@user = User.find_by_email(params[:email])
-    #UserMailer.forgotten_password(@user).deliver_now
   end
 
   #def forgotten_password()

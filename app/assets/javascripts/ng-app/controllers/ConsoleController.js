@@ -10,6 +10,10 @@ app.controller('ConsoleController', ['$rootScope', '$scope', '$location', '$http
   $scope.init = function() {
 		$scope.queryResult = "Your results will be shown here!";
 		$scope.isnewconnection = false;
+		
+        $scope.session = undefined;
+        if($rootScope.session)
+		    $scope.session = $rootScope.session.current_user;
 	};
   
   // Fill connections list
@@ -117,7 +121,7 @@ app.controller('ConsoleController', ['$rootScope', '$scope', '$location', '$http
     			databaseusername: $scope.current_connection.databaseusername, 
     			databasepassword_digest: $scope.current_connection.databasepassword_digest, 
     			databaselocation: $scope.current_connection.databaselocation,
-    			preference_id: $rootScope.session.current_user.id,
+    			preference_id: $scope.current_connection.preference_id,
     			sid: $scope.current_connection.sid, 
     			port:$scope.current_connection.port
     		}
