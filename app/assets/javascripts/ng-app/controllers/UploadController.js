@@ -28,7 +28,7 @@ app
         }
     };
 })
-.controller('UploadController', ['$scope','$http', function($scope, $http) {
+.controller('UploadController', ['$rootScope', '$scope','$http', function($rootScope, $scope, $http) {
 
 
     $scope.displayFileContents = function(contents) {
@@ -42,6 +42,12 @@ app
     $scope.search = function() {
         $scope.results = "results from http get using query:" + $scope.query.first;
     };
+    
+    $scope.init = function() {
+        $scope.session = undefined;
+        if($rootScope.session)
+		    $scope.session = $rootScope.session.current_user;
+    }
     
     $scope.executeScript = function() {
 	var sc = $scope.results;

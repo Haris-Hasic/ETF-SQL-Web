@@ -10,6 +10,10 @@ app.controller('ConsoleController', ['$rootScope', '$scope', '$location', '$http
   $scope.init = function() {
 		$scope.queryResult = "Your results will be shown here!";
 		$scope.isnewconnection = false;
+		
+        $scope.session = undefined;
+        if($rootScope.session)
+		    $scope.session = $rootScope.session.current_user;
 	};
   
   // Fill connections list

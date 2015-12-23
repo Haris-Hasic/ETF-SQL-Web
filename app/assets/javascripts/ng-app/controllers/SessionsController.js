@@ -12,7 +12,6 @@ app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http
 		$cookieStore.remove('userCookie');
 		
 		$location.path("/");
-		console.log($location);
 	}
 	
 	$scope.login = function(){

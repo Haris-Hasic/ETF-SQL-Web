@@ -1,5 +1,7 @@
 <div class="container">
-  <div ng-controller = "UploadController">
+  <div ng-controller = "UploadController" data-ng-init="init()">
+     <div ng-if="session">
+    
     <!-- Button trigger modal -->
     <button type="file" on-read-file="displayFileContents(contents)" class="scriptButton btn btn-primary launch-modal" data-toggle="modal" data-target="#myModal">
       <i class="glyphicon glyphicon-cloud-upload"></i>&nbsp; Upload Script
@@ -85,11 +87,17 @@
         </div>
       </div>
     </div>
+    </div>
+    <div ng-if="!session">
+      <p>Required login to view page</p>
+      
+    </div>
+    
   </div>
   <!-- Upload ends here -->
   
   <section data-ng-controller="ConsoleController" data-ng-init="init()">
-  
+  <div ng-if="session">
     <!-- Modal for Connections-->
     <div class="modal fade" id="ModalConnection" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -161,6 +169,8 @@
       </div>
   
       <div class="clearfix visible-lg"></div>
+    </div>
+    
     </div>
   </section>
 
