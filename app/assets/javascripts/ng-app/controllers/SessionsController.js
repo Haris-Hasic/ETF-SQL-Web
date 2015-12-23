@@ -2,7 +2,7 @@ app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http
 	  
 	$scope.init = function(){	
 		if($cookieStore.get('userCookie'))
-			successCallback($cookieStore.get('userCookie'));
+			successLogin($cookieStore.get('userCookie'));
 		
 	}
 	
