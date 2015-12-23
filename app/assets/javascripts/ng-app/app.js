@@ -1,4 +1,4 @@
-var app = angular.module('ETF-SQL-Web', [ 'ngRoute', 'templates', 'ivh.treeview']);
+var app = angular.module('ETF-SQL-Web', [ 'ngCookies', 'ngRoute', 'templates', 'ivh.treeview']);
 
 app.config(function($routeProvider) {
 	$routeProvider

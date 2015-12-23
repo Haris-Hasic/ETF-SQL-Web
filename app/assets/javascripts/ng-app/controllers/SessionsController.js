@@ -1,6 +1,12 @@
-app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http', function($rootScope,$scope, $location, $http) { 
+app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http', '$cookieStore', function($rootScope,$scope, $location, $http, $cookieStore) { 
 	  
 	$scope.init = function(){	
+		//$cookieStore.put("kuki", "ovo je kuki");
+		
+		if($cookieStore.get('userCookie'))
+		{
+			successCallback($cookieStore.get('userCookie'))
+		}
 	}
 	
 	$scope.logout = function(){
@@ -25,6 +31,8 @@ app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http
 		$rootScope.session = {};
 		$rootScope.session.current_user = response.data.user_id;
 		$scope.session.current_user = response.data.user_id; //ovo se koristi
+		
+		$cookieStore.put('userCookie', response);
 		$location.path("/console");
 	}
 	
