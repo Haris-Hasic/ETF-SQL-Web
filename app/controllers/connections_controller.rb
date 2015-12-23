@@ -8,7 +8,7 @@ class ConnectionsController < ApplicationController
     user_id = params[:user_id]
     preference = Preference.where('user_id = ?',user_id).limit(1)
     @connections = Array.new()
-    @connections = Connection.where('preference_id = ?', @preference[0][:id]).limit(20) unless preference.blank?
+    @connections = Connection.where('preference_id = ?', preference[0][:id]).limit(20) unless preference.blank?
     json = @connections.to_json
     render json: json
   end
