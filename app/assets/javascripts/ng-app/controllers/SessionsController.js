@@ -9,6 +9,7 @@ app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http
 	$scope.logout = function(){
 		$rootScope.session = undefined;
 		$scope.session = undefined;
+		$cookieStore.remove('userCookie');
 		
 		$location.path("/");
 		console.log($location);
