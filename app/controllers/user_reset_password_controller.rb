@@ -14,8 +14,9 @@ class UserResetPasswordController < ApplicationController
 		    json = {:user_id => session[:user_id], :current_username => session[:current_username]}.to_json
 		    render json: json
 		else
-		    render.status(500)
-		    render json: {}.to_json
+		    render json: {:error => "greska"}.to_json
+		    #render.status(500)
+		    #render json: {}.to_json
 		end
         
     end
@@ -33,8 +34,9 @@ class UserResetPasswordController < ApplicationController
 		  render json: json
 		else
 		  #user_res_pass ne postoji
-		  render.status(400)
-		  render json: {}.to_json
+		  render json: {:error => "greska"}.to_json
+		  #render.status(400)
+		  #render json: {}.to_json
 		end
     end
         

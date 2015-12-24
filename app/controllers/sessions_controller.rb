@@ -11,8 +11,10 @@ class SessionsController < ApplicationController
 		  json = {:user_id => session[:user_id], :current_username => session[:current_username]}.to_json
 		  render json: json
 		else
-		  response.status(400)
-		  response json: {}.to_json
+		  json = {:error => "user ne postoji"}.to_json
+		  render json: json
+		  #response.status(400)
+		  #response json: {}.to_json
 		  
 		  #render json: {}.to_json.status(400)
 		  #redirect_to '/#/login' #pogresan password

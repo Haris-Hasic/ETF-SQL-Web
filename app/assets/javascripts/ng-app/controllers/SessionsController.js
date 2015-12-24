@@ -2,8 +2,10 @@ app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http
 	  
 	$scope.init = function(){	
 		if($cookieStore.get('userCookie'))
+		{
 			successLogin($cookieStore.get('userCookie'));
-		
+			toastr.info("Vaša sesija je vraćena");
+		}
 	}
 	
 	$scope.logout = function(){
@@ -20,20 +22,35 @@ app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http
       password: $scope.password,
 		};
 
-		$http.post('/login.json', data).then(successLogin, errorLogin);
+		$http.post('/login.json', data).then(successLoginWithNotification, errorLogin);
+	}
+	
+	var successLoginWithNotification = function(response){
+		successLogin(response);
+		if(response.data.user_id != undefined)
+			toastr.success("Dobrodošli, " + response.data.user_id.username);
 	}
 	
 	var successLogin = function(response) {
-		$scope.success = "Success";
-		$rootScope.session = {};
-		$rootScope.session.current_user = response.data.user_id;
-		$scope.session.current_user = response.data.user_id; //ovo se koristi
 		
-		$cookieStore.put('userCookie', response);
-		$location.path("/console");
+		if(response.data.error != undefined)
+		{
+			toastr.error("Pogrešan username i/ili password");
+		}
+		else
+		{
+			$scope.success = "Success";
+			$rootScope.session = {};
+			$rootScope.session.current_user = response.data.user_id;
+			$scope.session.current_user = response.data.user_id; //ovo se koristi
+			
+			$cookieStore.put('userCookie', response);
+			$location.path("/console");
+		}
 	}
 	
 	var errorLogin = function(response) {
+		//Greska u http protokolu
 		$scope.success = "Error";
 	}
 

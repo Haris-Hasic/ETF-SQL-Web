@@ -21,6 +21,12 @@ class UsersController < ApplicationController
   # GET /forgotten_password
   def forgotten_password
     @user = User.find_by_email(params[:email])
+    
+    if(@user.blank?)
+      render json: {:error => "greska"}.to_json
+      return
+    end
+        
     params[:id] = @user[:i]
     
     #random value

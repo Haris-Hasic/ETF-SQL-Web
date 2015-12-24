@@ -20,11 +20,14 @@ app.controller('PasswordResetController', ['$rootScope', '$scope', '$routeParams
 	}
 	
 	var successCallbackRestart = function(response) {
-		$location.path("/");
+		if(response.data.error != undefined)
+		{
+			$location.path("/");
+		}
 	}
 	
 	var errorCallbackRestart = function(response) {
-		
+		//Greska u http protokolu
 	}
 	
 	
@@ -39,11 +42,21 @@ app.controller('PasswordResetController', ['$rootScope', '$scope', '$routeParams
 	}
 	
 	var successCallbackForgot = function(response) {
-		$scope.success = "Mail je dostavljen";
+		console.log(response);
+		if(response.data.error)
+		{
+			toastr.error("Korisnički email nije registrovan")
+			//$scope.success = "Greška u slanju maila";
+		}
+		else
+		{
+			toastr.info("Provjerite vaš mejl")
+			//$scope.success = "Mail je dostavljen";
+		}
 	}
 	
 	var errorCallbackForgot = function(response) {
-		$scope.success = "Greška u slanju maila";
+		//Greska u http protokolu
 	}
 	
 }]);
