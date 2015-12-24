@@ -6,6 +6,7 @@ app.controller('PasswordResetController', ['$rootScope', '$scope', '$routeParams
 		
 	}
 	
+	//inicijalizacija restart forme - na kojoj izmedju ostalog pise email
 	var successCallbackRestartInit = function(response) {
 		$scope.email = response.data.email
 		$scope.user_id = response.data.user_id
@@ -20,9 +21,14 @@ app.controller('PasswordResetController', ['$rootScope', '$scope', '$routeParams
 	}
 	
 	var successCallbackRestart = function(response) {
-		if(response.data.error != undefined)
+		if(response.data.error)
 		{
-			$location.path("/");
+			toastr.error("Passwordi moraju biti jednaki.");
+		}
+		else
+		{
+			toastr.success("Vaš password je uspješno promjenjen");
+			$location.path("/login");
 		}
 	}
 	
@@ -42,7 +48,6 @@ app.controller('PasswordResetController', ['$rootScope', '$scope', '$routeParams
 	}
 	
 	var successCallbackForgot = function(response) {
-		console.log(response);
 		if(response.data.error)
 		{
 			toastr.error("Korisnički email nije registrovan")

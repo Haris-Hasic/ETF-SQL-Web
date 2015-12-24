@@ -14,6 +14,7 @@ app.controller('SessionsController', ['$rootScope', '$scope','$location', '$http
 		$cookieStore.remove('userCookie');
 		
 		$location.path("/");
+		toastr.info("Uspješno ste odjavljeni");
 	}
 	
 	$scope.login = function(){
