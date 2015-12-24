@@ -96,6 +96,7 @@
   </div>
   <!-- Upload ends here -->
   
+  <section data-ng-controller="ConsoleController" data-ng-init="init()">
   <div ng-if="session">
     <!-- Modal for Connections-->
     <div class="modal fade" id="ModalConnection" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -138,15 +139,11 @@
         </div>
       </div>
     </div>
-    
-    <section data-ng-controller="ConsoleController" data-ng-init="init()">
-    
+  
     <div ng-controller="TreeController as drvo">
-      <p> Pretraga objekata: <input type="text" ng-model="bagSearch" />
-      <div ivh-treeview="drvo.bag" ivh-treeview-filter="bagSearch" ivh-treeview-on-toggle="drvo.toggleCallback(ivhNode, ivhIsExpanded, ivhTree)"></div>
-      <button class="btn btn-primary launch-modal" ng-click="drvo.formirajDrvo()"> Ucitaj Objekte </button>
-      <button class="btn btn-primary launch-modal" ng-click="drvo.osvjeziDrvo()"> Osvjezi Stablo </button>
-     </div>
+      <input type="text" ng-model="bagSearch" />
+      <div ivh-treeview="drvo.bag" ivh-treeview-filter="bagSearch"></div>
+    </div>
     
     <h1>Query</h1>
     <div class="form-group">
