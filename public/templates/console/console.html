@@ -1,58 +1,74 @@
-<div class="container">
-  <div ng-controller = "UploadController" data-ng-init="init()">
-     <div ng-if="session">
+<div ng-if="!session" class="container">
+      <p>Required login to view page</p>
+</div>
+
+<div ng-if="session" class="container-fluid">
+  <section ng-controller = "UploadController" data-ng-init="init()">
     
-    <!-- Button trigger modal -->
-    <button type="file" on-read-file="displayFileContents(contents)" class="scriptButton btn btn-primary launch-modal" data-toggle="modal" data-target="#myModal">
-      <i class="glyphicon glyphicon-cloud-upload"></i>&nbsp; Upload Script
-    </button>
-    
-    <!-- Dropdown User History -->
-    <div class="btn-group">
-      <div class="dropdown scriptButton">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" data-ng-click="getUserHistory()">User History
-        <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li data-ng-repeat="uh in user_queries"><a href="" data-ng-click="insertOldQuery($index)">{{uh.scriptcontent}}</a></li>
-        </ul>
+    <div   class="row container-fluid" >
+      
+      <div class="pull-right">
+              <!-- Dropdown Connection Choice -->
+            <div class="btn-group">
+              <div class="dropdown scriptButton">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" data-ng-click="getConnections()">Connections
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li data-ng-repeat="con in connections"><a href="" data-ng-click="insertOldConnections($index)">User {{con.databasename}} at {{con.databaselocation}} running {{con.databasetype}}</a></li>
+                </ul>
+                <button class="connectionButton btn btn-primary"  data-toggle="modal" data-target="#ModalConnection">
+                  <i class="glyphicon glyphicon-flash"></i>&nbsp; Edit connections
+                </button>
+              </div>
+            </div>
+            
+            <!-- Button Connect -->
+            <button class="scriptButton btn btn-primary launch-modal" data-ng-click="connect()">
+              <i class="glyphicon glyphicon-link"></i>&nbsp; Connect
+            </button>
+            
+            <!-- Button Disconnect -->
+            <button class="scriptButton btn btn-primary launch-modal" data-ng-click="disconnect()">
+              <i class="glyphicon glyphicon-flash"></i>&nbsp; Disconnect
+            </button>
+            
+            <!-- Connection Status alert-->
+            <!--
+            <div class="btn-group">
+              <div class="alert alert-danger" ng-show="!connectionStatus.status"> 
+                Connection Closed!
+              </div>
+            </div>
+            <div class="btn-group">
+              <div class="alert alert-success" ng-show="connectionStatus.status"> 
+                Connection Open!
+              </div>
+            </div>
+            -->
+              
       </div>
+              
+              
+              
+                <!-- Button trigger modal -->
+              <button type="file" on-read-file="displayFileContents(contents)" class="scriptButton btn btn-primary launch-modal" data-toggle="modal" data-target="#myModal">
+                <i class="glyphicon glyphicon-cloud-upload"></i>&nbsp; Upload Script
+              </button>
+              
+              <!-- Dropdown User History -->
+              <div class="btn-group">
+                <div class="dropdown scriptButton">
+                  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" data-ng-click="getUserHistory()">User History
+                  <span class="caret"></span></button>
+                  <ul class="dropdown-menu">
+                    <li data-ng-repeat="uh in user_queries"><a href="" data-ng-click="insertOldQuery($index)">{{uh.scriptcontent}}</a></li>
+                  </ul>
+                </div>
+              </div>
     </div>
     
-    <!-- Dropdown Connection Choice -->
-    <div class="btn-group">
-      <div class="dropdown scriptButton">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" data-ng-click="getConnections()">Connections
-        <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li data-ng-repeat="con in connections"><a href="" data-ng-click="insertOldConnections($index)">User {{con.databasename}} at {{con.databaselocation}} running {{con.databasetype}}</a></li>
-        </ul>
-        <button class="connectionButton btn btn-primary"  data-toggle="modal" data-target="#ModalConnection">
-          <i class="glyphicon glyphicon-flash"></i>&nbsp; Edit connections
-        </button>
-      </div>
-    </div>
     
-    <!-- Button Connect -->
-    <button class="scriptButton btn btn-primary launch-modal" data-ng-click="connect()">
-      <i class="glyphicon glyphicon-link"></i>&nbsp; Connect
-    </button>
     
-    <!-- Button Disconnect -->
-    <button class="scriptButton btn btn-primary launch-modal" data-ng-click="disconnect()">
-      <i class="glyphicon glyphicon-flash"></i>&nbsp; Disconnect
-    </button>
-    
-    <!-- Connection Status alert-->
-    <div class="btn-group">
-      <div class="alert alert-danger" ng-show="!connectionStatus.status"> 
-        Connection Closed!
-      </div>
-    </div>
-    <div class="btn-group">
-      <div class="alert alert-success" ng-show="connectionStatus.status"> 
-        Connection Open!
-      </div>
-    </div>
     
     <!-- Modal for Script -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -87,16 +103,12 @@
         </div>
       </div>
     </div>
-    </div>
-    <div ng-if="!session">
-      <p>Required login to view page</p>
-      
-    </div>
     
-  </div>
+    
+  
   <!-- Upload ends here -->
   
-  <div ng-if="session">
+  <!--<div ng-if="session">-->
     <!-- Modal for Connections-->
     <div class="modal fade" id="ModalConnection" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -139,16 +151,31 @@
       </div>
     </div>
     
-    <section data-ng-controller="ConsoleController" data-ng-init="init()">
     
-    <div ng-controller="TreeController as drvo">
+     
+    </section>
+    <div class="row">
+    <section ng-controller="TreeController as drvo" class="col-sm-3 col-md-3" style="margin-top: 40px;">
       <p> Pretraga objekata: <input type="text" ng-model="bagSearch" />
       <div ivh-treeview="drvo.bag" ivh-treeview-filter="bagSearch" ivh-treeview-on-toggle="drvo.toggleCallback(ivhNode, ivhIsExpanded, ivhTree)"></div>
       <button class="btn btn-primary launch-modal" ng-click="drvo.formirajDrvo()"> Ucitaj Objekte </button>
       <button class="btn btn-primary launch-modal" ng-click="drvo.osvjeziDrvo()"> Osvjezi Stablo </button>
-     </div>
+     </section>
+     
+    <section data-ng-controller="ConsoleController" data-ng-init="init()" class="col-sm-9 col-md-9">
     
-    <h1>Query</h1>
+    
+    <!-- query status konekcije-->
+    <div class="container-fluid">
+      <div class="col-md-6 col-sm-6">
+       <h1>Query</h1>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <h1 ng-if="!connectionStatus.status" class="pull-right "><small class="text-danger">Not Connected</small></h1>
+        <h1 ng-if="connectionStatus.status" class="pull-right"><small class="text-success">Connected</small></h1>
+      </div>
+    </div>
+    
     <div class="form-group">
       <textarea class="form-control" style="font-family:'Courier New'" rows="20" id="query" data-ng-model="scriptContent" ng-change="textEvaluate()" ng-trim="false"></textarea>
       <button type="submit" class="scriptButton btn btn-primary" data-ng-click="create()">Submit</button>
@@ -174,9 +201,10 @@
       <div class="clearfix visible-lg"></div>
     </div>
     
-    </div>
+    <!--</div>-->
   </section>
 
+  <div>
 </div>
 
 

@@ -155,9 +155,16 @@ app.controller('ConsoleController', ['$rootScope', '$scope', '$location', '$http
 	};
 	var testsuccessCallback = function(response) {
 		if(response.data.columns)
-				$scope.connectionStatus.status = true;
+				{
+					$scope.connectionStatus.status = true;
+					toastr.success("Konekcija uspostavljena");
+					
+				}
 			else
-				$scope.connectionStatus.status = false;
+				{
+					$scope.connectionStatus.status = false;
+					toastr.error("Konekcija nije uspostavljena");
+				}
 		};
 
 	$scope.create = function () {
