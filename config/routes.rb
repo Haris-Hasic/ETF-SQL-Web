@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
   
   post '/console' => 'console#index'
+  post '/dbconnect' => 'console#create'
+  delete '/dbdisconnect' => 'console#destroy'
   
   post '/fileUpload' => 'upload#uploadFile'
   
